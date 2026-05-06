@@ -193,6 +193,10 @@
       height: 54px;
     }
 
+    .step:first-child .round .icon-img {
+      transform: translateY(5px);
+    }
+
     .service .icon-img {
       width: 44px;
       height: 44px;
@@ -359,7 +363,7 @@
       display: flex;
       flex-direction: column;
       align-items: flex-start;
-      gap: 10px;
+      gap: 2px;
     }
 
     main {
@@ -392,7 +396,7 @@
       --cut: 7px;
       position: relative;
       width: 74.7%;
-      min-height: 63px;
+      min-height: 69px;
       margin: 0 auto 16px;
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -447,6 +451,21 @@
       fill: rgba(232, 178, 82, .88);
     }
 
+    .stats-frame .side-diamond {
+      fill: none;
+      stroke: rgba(216, 169, 77, .68);
+      stroke-width: .6;
+      stroke-linejoin: round;
+      vector-effect: non-scaling-stroke;
+    }
+
+    .stats-frame .corner-dot {
+      fill: none;
+      stroke: rgba(216, 169, 77, .68);
+      stroke-width: .6;
+      vector-effect: non-scaling-stroke;
+    }
+
     .stat {
       position: relative;
       z-index: 2;
@@ -454,7 +473,7 @@
       align-items: center;
       justify-content: center;
       gap: 20px;
-      min-height: 52px;
+      min-height: 58px;
       border-right: 1px solid rgba(216, 169, 77, .35);
     }
 
@@ -1118,6 +1137,21 @@
 
       <symbol id="frame-panel" viewBox="0 0 1028 112">
         <g fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" shape-rendering="geometricPrecision">
+          <path vector-effect="non-scaling-stroke" d="M8.5 1.5H1019.5C1019.6 4.7 1022 7 1026.5 8.5V103.5C1022 105 1019.6 107.3 1019.5 110.5H8.5C8.4 107.3 6 105 1.5 103.5V8.5C6 7 8.4 4.7 8.5 1.5Z"/>
+          <path vector-effect="non-scaling-stroke" d="M1.5 8.5C-.6 11.2-.6 14.8 1.5 17.5M1.5 94.5C-.6 97.2-.6 100.8 1.5 103.5"/>
+          <path vector-effect="non-scaling-stroke" d="M1026.5 8.5C1028.6 11.2 1028.6 14.8 1026.5 17.5M1026.5 94.5C1028.6 97.2 1028.6 100.8 1026.5 103.5"/>
+          <path vector-effect="non-scaling-stroke" d="M8.5 1.5C5.9 1.4 4.9 4.8 7.1 5.7C9.3 6.6 11.4 4.1 9.1 2.5M8.5 110.5C5.9 110.6 4.9 107.2 7.1 106.3C9.3 105.4 11.4 107.9 9.1 109.5M1019.5 1.5C1022.1 1.4 1023.1 4.8 1020.9 5.7C1018.7 6.6 1016.6 4.1 1018.9 2.5M1019.5 110.5C1022.1 110.6 1023.1 107.2 1020.9 106.3C1018.7 105.4 1016.6 107.9 1018.9 109.5"/>
+        </g>
+        <g fill="currentColor" opacity=".42">
+          <circle cx="7.4" cy="4.1" r="1"/>
+          <circle cx="7.4" cy="107.9" r="1"/>
+          <circle cx="1020.6" cy="4.1" r="1"/>
+          <circle cx="1020.6" cy="107.9" r="1"/>
+        </g>
+      </symbol>
+
+      <symbol id="frame-process-panel" viewBox="0 0 1028 112">
+        <g fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" shape-rendering="geometricPrecision">
           <path vector-effect="non-scaling-stroke" d="M7.5 1.5H1020.5C1020.5 6 1023.9 8.3 1026.5 9.5V102.5C1023.9 103.7 1020.5 106 1020.5 110.5H7.5C7.5 106 4.1 103.7 1.5 102.5V9.5C4.1 8.3 7.5 6 7.5 1.5Z"/>
           <path vector-effect="non-scaling-stroke" opacity=".22" d="M16.5 7.5H118.5M909.5 7.5H1011.5M16.5 104.5H118.5M909.5 104.5H1011.5"/>
           <path vector-effect="non-scaling-stroke" opacity=".18" d="M7.5 18.5V44.5M1020.5 18.5V44.5M7.5 67.5V93.5M1020.5 67.5V93.5"/>
@@ -1166,9 +1200,13 @@
           <path class="line" d="M8.5 1.5H759.5C759.6 4.7 762 7 766.5 8.5V54.5C762 56 759.6 58.3 759.5 61.5H8.5C8.4 58.3 6 56 1.5 54.5V8.5C6 7 8.4 4.7 8.5 1.5Z"/>
           <path class="line" d="M1.5 8.5C-.6 11.2-.6 14.8 1.5 17.5M1.5 45.5C-.6 48.2-.6 51.8 1.5 54.5"/>
           <path class="line" d="M766.5 8.5C768.6 11.2 768.6 14.8 766.5 17.5M766.5 45.5C768.6 48.2 768.6 51.8 766.5 54.5"/>
-          <path class="line" d="M8.5 1.5C6.3 1.6 5.5 0 6.9-1.1M8.5 61.5C6.3 61.4 5.5 63 6.9 64.1M759.5 1.5C761.7 1.6 762.5 0 761.1-1.1M759.5 61.5C761.7 61.4 762.5 63 761.1 64.1"/>
-          <path class="dot" d="M1.5 29.1l2.4 2.4-2.4 2.4-2.4-2.4Z"/>
-          <path class="dot" d="M766.5 29.1l2.4 2.4-2.4 2.4-2.4-2.4Z"/>
+          <path class="line" d="M8.5 1.5C5.9 1.4 4.9 4.8 7.1 5.7C9.3 6.6 11.4 4.1 9.1 2.5M8.5 61.5C5.9 61.6 4.9 58.2 7.1 57.3C9.3 56.4 11.4 58.9 9.1 60.5M759.5 1.5C762.1 1.4 763.1 4.8 760.9 5.7C758.7 6.6 756.6 4.1 758.9 2.5M759.5 61.5C762.1 61.6 763.1 58.2 760.9 57.3C758.7 56.4 756.6 58.9 758.9 60.5"/>
+          <circle class="corner-dot" cx="7.4" cy="4.1" r="1.55"/>
+          <circle class="corner-dot" cx="7.4" cy="58.9" r="1.55"/>
+          <circle class="corner-dot" cx="760.6" cy="4.1" r="1.55"/>
+          <circle class="corner-dot" cx="760.6" cy="58.9" r="1.55"/>
+          <path class="side-diamond" d="M1.5 28.7l2.8 2.8-2.8 2.8-2.8-2.8Z"/>
+          <path class="side-diamond" d="M766.5 28.7l2.8 2.8-2.8 2.8-2.8-2.8Z"/>
         </svg>
         <div class="stat">
           <img class="icon-img" src="assets/cropped-icons-webp/icon-stat-castle.webp" alt="" aria-hidden="true">
@@ -1243,7 +1281,7 @@
       </section>
 
       <section class="process" id="process">
-        <svg class="ornate-frame panel-frame" viewBox="0 0 1028 112" preserveAspectRatio="none" aria-hidden="true"><use href="#frame-panel"></use></svg>
+        <svg class="ornate-frame panel-frame" viewBox="0 0 1028 112" preserveAspectRatio="none" aria-hidden="true"><use href="#frame-process-panel"></use></svg>
         <div class="section-title">Our Process</div>
         <div class="steps">
           <article class="step">
