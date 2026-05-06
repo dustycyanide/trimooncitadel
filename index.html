@@ -4,6 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>TriMoon Citadel Works</title>
+  <link rel="preload" as="image" href="looking-at-castle.webp" type="image/webp" fetchpriority="high">
   <style>
     :root {
       --ink: #fff7e8;
@@ -47,7 +48,15 @@
       position: relative;
       min-height: 430px;
       border-bottom: 2px solid var(--gold);
-      background: #08182c url("looking-at-castle.png") center / cover no-repeat;
+      background-color: #08182c;
+      background-image: url("looking-at-castle.png");
+      background-image: image-set(
+        url("looking-at-castle.webp") type("image/webp"),
+        url("looking-at-castle.png") type("image/png")
+      );
+      background-position: center;
+      background-size: cover;
+      background-repeat: no-repeat;
     }
 
     .hero::before {
@@ -321,6 +330,10 @@
       overflow: hidden;
       border: 1px solid var(--line);
       background: #08182c;
+    }
+
+    .feature picture {
+      display: contents;
     }
 
     .feature img {
@@ -691,7 +704,10 @@
 
       <section class="feature-grid" id="portfolio">
         <article class="feature">
-          <img src="tower-perspective.png" alt="Castle towers overlooking a mountain lake at sunset">
+          <picture>
+            <source srcset="tower-perspective.webp" type="image/webp">
+            <img src="tower-perspective.png" width="1672" height="941" loading="lazy" decoding="async" alt="Castle towers overlooking a mountain lake at sunset">
+          </picture>
           <div class="feature-copy">
             <h3>Master Planning &amp; Views</h3>
             <p>Strategic site design that frames breathtaking vistas and harmonizes architecture with nature.</p>
@@ -699,7 +715,10 @@
           </div>
         </article>
         <article class="feature" id="interiors">
-          <img src="throne-room.png" alt="Grand magical throne room with stained glass and gold details">
+          <picture>
+            <source srcset="throne-room.webp" type="image/webp">
+            <img src="throne-room.png" width="1672" height="941" loading="lazy" decoding="async" alt="Grand magical throne room with stained glass and gold details">
+          </picture>
           <div class="feature-copy">
             <h3>Interiors &amp; Craftsmanship</h3>
             <p>Throne rooms, great halls, and private chambers crafted with rare materials and timeless precision.</p>
