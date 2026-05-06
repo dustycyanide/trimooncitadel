@@ -1,0 +1,3 @@
+desktop_changed_pixels=2613 bbox=(212, 434, 841, 1016) size=(1122, 1450)
+mobile_390_changed_pixels=18182 bbox=(13, 547, 377, 1965) size=(390, 3550)
+mobile_320_changed_pixels=19393 bbox=(13, 547, 307, 1965) size=(320, 3598)
