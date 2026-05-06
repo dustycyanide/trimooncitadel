@@ -1,0 +1,769 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>TriMoon Citadel Works</title>
+  <style>
+    :root {
+      --ink: #fff7e8;
+      --muted: #d9d1c6;
+      --gold: #d8a94d;
+      --gold-2: #f0c773;
+      --violet: #5e2397;
+      --navy: #071a30;
+      --navy-2: #0a213b;
+      --line: rgba(221, 166, 75, .82);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 50% -10%, rgba(93, 54, 125, .5), transparent 36rem),
+        linear-gradient(180deg, #07162a 0%, #061528 42%, #071a30 100%);
+      font-family: Georgia, "Times New Roman", serif;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .page {
+      min-height: 100vh;
+      overflow: hidden;
+      background-image:
+        linear-gradient(rgba(216, 169, 77, .045) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(216, 169, 77, .035) 1px, transparent 1px);
+      background-size: 48px 48px;
+    }
+
+    .hero {
+      position: relative;
+      min-height: 430px;
+      border-bottom: 2px solid var(--gold);
+      background: #08182c url("looking-at-castle.png") center / cover no-repeat;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(90deg, rgba(4, 13, 27, .95) 0%, rgba(5, 16, 31, .76) 27%, rgba(5, 16, 31, .12) 62%, rgba(5, 16, 31, .38) 100%),
+        linear-gradient(0deg, rgba(5, 16, 31, .45), transparent 48%);
+    }
+
+    .nav,
+    .hero-copy,
+    main,
+    footer {
+      position: relative;
+      z-index: 1;
+      width: min(1028px, calc(100% - 96px));
+      margin: 0 auto;
+    }
+
+    .nav {
+      height: 76px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .brand,
+    .footer-brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      min-width: 230px;
+    }
+
+    .mark {
+      width: 60px;
+      height: 60px;
+      display: grid;
+      place-items: center;
+      border: 0;
+      background: transparent;
+    }
+
+    .icon-img {
+      display: block;
+      width: 38px;
+      height: 38px;
+      object-fit: contain;
+    }
+
+    .mark .icon-img {
+      width: 60px;
+      height: 60px;
+    }
+
+    .stat .icon-img {
+      width: 44px;
+      height: 44px;
+    }
+
+    .round .icon-img {
+      width: 62px;
+      height: 62px;
+    }
+
+    .service .icon-img {
+      width: 40px;
+      height: 40px;
+    }
+
+    .brand-title {
+      font-size: 27px;
+      line-height: .86;
+      letter-spacing: .02em;
+      text-shadow: 0 2px 8px rgba(0, 0, 0, .5);
+    }
+
+    .brand-title span {
+      display: block;
+      margin-top: 7px;
+      font-size: 12px;
+      letter-spacing: .31em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .links {
+      display: flex;
+      gap: 34px;
+      align-items: center;
+      font-size: 15px;
+      text-shadow: 0 2px 8px rgba(0, 0, 0, .75);
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      min-height: 42px;
+      padding: 0 24px;
+      border: 1px solid var(--gold);
+      color: var(--ink);
+      background: rgba(7, 19, 37, .78);
+      box-shadow:
+        0 0 0 1px rgba(22, 9, 37, .7) inset,
+        0 0 0 3px rgba(216, 169, 77, .12) inset,
+        0 8px 22px rgba(0, 0, 0, .25);
+      font-size: 15px;
+      white-space: nowrap;
+    }
+
+    .btn.primary {
+      min-width: 252px;
+      background: linear-gradient(180deg, #7130ad 0%, #4d1b84 100%);
+      box-shadow: 0 0 0 2px rgba(245, 207, 111, .12) inset, 0 12px 28px rgba(14, 5, 27, .36);
+    }
+
+    .btn.dark {
+      min-width: 218px;
+    }
+
+    .btn::after,
+    .spark {
+      content: "*";
+      color: var(--gold-2);
+      font-size: 25px;
+      line-height: 1;
+    }
+
+    .btn.dark::after {
+      content: ">";
+      font-size: 18px;
+    }
+
+    .hero-copy {
+      padding-top: 30px;
+    }
+
+    h1 {
+      max-width: 455px;
+      margin: 0 0 14px;
+      font-size: clamp(40px, 3.75vw, 44px);
+      line-height: .98;
+      font-weight: 400;
+      text-shadow: 0 3px 14px rgba(0, 0, 0, .6);
+    }
+
+    h1 em {
+      color: var(--gold-2);
+      font-style: normal;
+    }
+
+    .hero-copy p {
+      width: 455px;
+      max-width: 100%;
+      margin: 0 0 18px;
+      color: var(--ink);
+      font-size: 15px;
+      line-height: 1.35;
+      text-shadow: 0 2px 10px rgba(0, 0, 0, .8);
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 10px;
+    }
+
+    main {
+      margin-top: -8px;
+      padding-bottom: 20px;
+    }
+
+    .stats {
+      width: 75%;
+      min-height: 68px;
+      margin: 0 auto 16px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      align-items: center;
+      border: 1px solid var(--line);
+      background: linear-gradient(180deg, rgba(8, 28, 52, .94), rgba(5, 19, 36, .94));
+      box-shadow: 0 0 0 1px rgba(0, 0, 0, .5) inset;
+    }
+
+    .stat {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 18px;
+      min-height: 54px;
+      border-right: 1px solid rgba(216, 169, 77, .35);
+    }
+
+    .stat:last-child {
+      border-right: 0;
+    }
+
+    .num {
+      display: block;
+      color: var(--gold-2);
+      font-size: 31px;
+      line-height: 1;
+    }
+
+    .label {
+      display: block;
+      margin-top: 2px;
+      color: var(--ink);
+      font-size: 14px;
+    }
+
+    .service-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+      margin: 0 8px 18px;
+    }
+
+    .service {
+      min-height: 158px;
+      padding: 10px 14px;
+      text-align: center;
+      border: 1px solid var(--line);
+      background: rgba(8, 27, 50, .83);
+      box-shadow: 0 0 38px rgba(56, 103, 158, .08) inset;
+    }
+
+    .icon {
+      height: 40px;
+      margin-bottom: 4px;
+      display: grid;
+      place-items: center;
+    }
+
+    .service h3 {
+      margin: 0 0 6px;
+      font-size: 17px;
+      font-weight: 400;
+    }
+
+    .service p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.1;
+    }
+
+    .service .mini {
+      display: block;
+      margin-top: 5px;
+      color: var(--gold-2);
+      font-size: 14px;
+    }
+
+    .feature-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      margin: 0 0 14px;
+    }
+
+    .feature {
+      position: relative;
+      min-height: 235px;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      background: #08182c;
+    }
+
+    .feature img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .feature::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, transparent 36%, rgba(2, 8, 18, .82) 100%);
+    }
+
+    .feature-copy {
+      position: absolute;
+      z-index: 1;
+      left: 16px;
+      right: 16px;
+      bottom: 16px;
+    }
+
+    .feature h3 {
+      margin: 0 0 4px;
+      font-size: 20px;
+      font-weight: 400;
+    }
+
+    .feature p {
+      width: 330px;
+      max-width: 100%;
+      margin: 0 0 8px;
+      color: var(--ink);
+      font-size: 13px;
+      line-height: 1.2;
+    }
+
+    .feature a {
+      color: var(--gold-2);
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .process {
+      border: 1px solid var(--line);
+      background: rgba(8, 27, 50, .72);
+      margin: 0 0 14px;
+      padding: 8px 18px 10px;
+    }
+
+    .section-title {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 18px;
+      margin: -25px auto 8px;
+      font-size: 25px;
+      line-height: 1;
+      background: #071a30;
+      width: fit-content;
+      padding: 0 20px;
+    }
+
+    .section-title::before,
+    .section-title::after {
+      content: "";
+      width: 58px;
+      height: 1px;
+      background: var(--line);
+    }
+
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+    }
+
+    .step {
+      display: grid;
+      grid-template-columns: 68px 1fr;
+      gap: 12px;
+      align-items: center;
+      position: relative;
+    }
+
+    .step:not(:last-child)::after {
+      content: "->";
+      position: absolute;
+      right: -18px;
+      top: 38px;
+      color: var(--gold-2);
+    }
+
+    .round {
+      width: 62px;
+      height: 62px;
+      display: grid;
+      place-items: center;
+      border: 1px solid rgba(216, 169, 77, .52);
+      border-radius: 50%;
+      overflow: hidden;
+    }
+
+    .step h3 {
+      margin: 0 0 4px;
+      color: var(--gold-2);
+      font-size: 17px;
+      font-weight: 400;
+    }
+
+    .step h3 span {
+      display: inline-grid;
+      place-items: center;
+      width: 20px;
+      height: 20px;
+      margin-right: 7px;
+      border: 1px solid rgba(216, 169, 77, .58);
+      border-radius: 50%;
+      font-size: 12px;
+    }
+
+    .step p {
+      margin: 0;
+      color: var(--ink);
+      font-size: 12px;
+      line-height: 1.18;
+    }
+
+    .testimonial,
+    .cta {
+      border: 1px solid var(--line);
+      background:
+        radial-gradient(circle at 12% 25%, rgba(110, 45, 153, .38), transparent 18rem),
+        linear-gradient(90deg, rgba(52, 20, 92, .9), rgba(11, 26, 54, .92));
+    }
+
+    .testimonial {
+      display: grid;
+      grid-template-columns: 170px 1fr 300px;
+      align-items: center;
+      min-height: 96px;
+      padding: 6px 26px;
+      margin-bottom: 16px;
+    }
+
+    .shield {
+      width: 76px;
+      height: 76px;
+      margin: 0 auto;
+      display: block;
+      object-fit: contain;
+    }
+
+    blockquote {
+      margin: 0;
+      font-size: 20px;
+      line-height: 1.14;
+    }
+
+    blockquote p {
+      margin: 5px 0 0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    cite {
+      color: var(--gold-2);
+      font-style: normal;
+      font-size: 14px;
+    }
+
+    .cite span {
+      display: block;
+      margin-top: 4px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .dots {
+      grid-column: 1 / -1;
+      text-align: center;
+      color: rgba(255, 247, 232, .55);
+      letter-spacing: 8px;
+      line-height: 1;
+    }
+
+    .cta {
+      min-height: 88px;
+      margin-bottom: 16px;
+      display: grid;
+      grid-template-columns: 145px 1fr 360px;
+      gap: 20px;
+      align-items: center;
+      padding: 6px 28px;
+    }
+
+    .cta h2 {
+      margin: 0 0 8px;
+      font-size: 31px;
+      font-weight: 400;
+    }
+
+    .cta p {
+      margin: 0;
+      color: var(--ink);
+      font-size: 14px;
+    }
+
+    footer {
+      display: grid;
+      grid-template-columns: 2.2fr .9fr 1.05fr 1.2fr 1.55fr;
+      gap: 24px;
+      padding: 0 16px 14px;
+      color: var(--muted);
+    }
+
+    footer h4 {
+      margin: 0 0 8px;
+      color: var(--ink);
+      font-size: 15px;
+      font-weight: 400;
+    }
+
+    footer p,
+    footer a {
+      display: block;
+      margin: 0 0 5px;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .copyright {
+      grid-column: 1 / -1;
+      display: flex;
+      justify-content: space-between;
+      border-top: 1px solid rgba(216, 169, 77, .18);
+      padding-top: 10px;
+      font-size: 12px;
+    }
+
+    @media (max-width: 900px) {
+      .nav,
+      .hero-copy,
+      main,
+      footer {
+        width: min(100% - 28px, 720px);
+      }
+
+      .links {
+        display: none;
+      }
+
+      .hero {
+        min-height: 560px;
+      }
+
+      .stats,
+      .service-grid,
+      .feature-grid,
+      .steps,
+      .testimonial,
+      .cta,
+      footer {
+        grid-template-columns: 1fr;
+      }
+
+      .stats {
+        width: 100%;
+      }
+
+      .stat {
+        border-right: 0;
+        border-bottom: 1px solid rgba(216, 169, 77, .35);
+      }
+
+      .service-grid {
+        margin-inline: 0;
+      }
+
+      .step::after {
+        display: none;
+      }
+
+      .testimonial,
+      .cta {
+        text-align: center;
+      }
+
+      .cta .btn {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header class="hero">
+      <nav class="nav" aria-label="Primary navigation">
+        <a class="brand" href="#">
+          <span class="mark" aria-hidden="true"><img class="icon-img" src="assets/reference-icons/icon-brand.png" alt=""></span>
+          <span class="brand-title">TriMoon<span>Citadel Works</span></span>
+        </a>
+        <div class="links">
+          <a href="#castles">Castles</a>
+          <a href="#interiors">Interiors</a>
+          <a href="#process">Process</a>
+          <a href="#portfolio">Portfolio</a>
+          <a href="#contact">Contact</a>
+        </div>
+        <a class="btn" href="#consultation">Book a Consultation</a>
+      </nav>
+
+      <section class="hero-copy">
+        <h1>We Build <br><em>Legendary Castles</em><br>for Modern Kingdoms</h1>
+        <p>From lakeside strongholds to celestial throne halls, TriMoon Citadel Works designs, engineers, and delivers bespoke magical castles across the realm.</p>
+        <div class="hero-actions">
+          <a class="btn primary" href="#consultation">Book a Design Consultation</a>
+          <a class="btn dark" href="#portfolio">View Signature Castles</a>
+        </div>
+      </section>
+    </header>
+
+    <main>
+      <section class="stats" aria-label="Company statistics">
+        <div class="stat">
+          <img class="icon-img" src="assets/reference-icons/icon-stat-castle.png" alt="" aria-hidden="true">
+          <div><span class="num">47</span><span class="label">Castles Completed</span></div>
+        </div>
+        <div class="stat">
+          <img class="icon-img" src="assets/reference-icons/icon-stat-crown.png" alt="" aria-hidden="true">
+          <div><span class="num">12</span><span class="label">Kingdoms Served</span></div>
+        </div>
+        <div class="stat">
+          <img class="icon-img" src="assets/reference-icons/icon-stat-shield.png" alt="" aria-hidden="true">
+          <div><span class="num">99-Year</span><span class="label">Ward Guarantee</span></div>
+        </div>
+      </section>
+
+      <section class="service-grid" id="castles">
+        <article class="service">
+          <div class="icon"><img class="icon-img" src="assets/reference-icons/icon-arcane.png" alt="" aria-hidden="true"></div>
+          <h3>Arcane Architecture</h3>
+          <p>Where ancient magic meets structural mastery. Our designs are timeless, awe-inspiring, and built to endure.</p>
+          <span class="mini">*</span>
+        </article>
+        <article class="service">
+          <div class="icon"><img class="icon-img" src="assets/reference-icons/icon-shield.png" alt="" aria-hidden="true"></div>
+          <h3>Defensive Wards</h3>
+          <p>Integrated protective enchantments and smart defense systems keep your realm secure across every plane of existence.</p>
+          <span class="mini">*</span>
+        </article>
+        <article class="service">
+          <div class="icon"><img class="icon-img" src="assets/reference-icons/icon-interiors.png" alt="" aria-hidden="true"></div>
+          <h3>Royal Interiors</h3>
+          <p>Bespoke halls and chambers crafted with rare materials, enchantments, and unrivaled artisan craftsmanship.</p>
+          <span class="mini">*</span>
+        </article>
+        <article class="service">
+          <div class="icon"><img class="icon-img" src="assets/reference-icons/icon-valley.png" alt="" aria-hidden="true"></div>
+          <h3>Valley &amp; Lake Masterplans</h3>
+          <p>Elevated site design that honors the land, the waters, and the views, crafted for legacy and generations to come.</p>
+          <span class="mini">*</span>
+        </article>
+      </section>
+
+      <section class="feature-grid" id="portfolio">
+        <article class="feature">
+          <img src="tower-perspective.png" alt="Castle towers overlooking a mountain lake at sunset">
+          <div class="feature-copy">
+            <h3>Master Planning &amp; Views</h3>
+            <p>Strategic site design that frames breathtaking vistas and harmonizes architecture with nature.</p>
+            <a href="#">Explore Masterplans -></a>
+          </div>
+        </article>
+        <article class="feature" id="interiors">
+          <img src="throne-room.png" alt="Grand magical throne room with stained glass and gold details">
+          <div class="feature-copy">
+            <h3>Interiors &amp; Craftsmanship</h3>
+            <p>Throne rooms, great halls, and private chambers crafted with rare materials and timeless precision.</p>
+            <a href="#">Explore Interiors -></a>
+          </div>
+        </article>
+      </section>
+
+      <section class="process" id="process">
+        <div class="section-title">Our Process</div>
+        <div class="steps">
+          <article class="step">
+            <div class="round"><img class="icon-img" src="assets/reference-icons/icon-compass.png" alt="" aria-hidden="true"></div>
+            <div><h3><span>1</span>Discover</h3><p>We learn your vision, realm, and requirements through in-depth consultation.</p></div>
+          </article>
+          <article class="step">
+            <div class="round"><img class="icon-img" src="assets/reference-icons/icon-process-castle.png" alt="" aria-hidden="true"></div>
+            <div><h3><span>2</span>Design</h3><p>Our architects and arcanists create concept, plans, and enchantments tailored to you.</p></div>
+          </article>
+          <article class="step">
+            <div class="round"><img class="icon-img" src="assets/reference-icons/icon-build.png" alt="" aria-hidden="true"></div>
+            <div><h3><span>3</span>Build</h3><p>Master builders and mages bring the design to life with precision and care.</p></div>
+          </article>
+          <article class="step">
+            <div class="round"><img class="icon-img" src="assets/reference-icons/icon-process-crown.png" alt="" aria-hidden="true"></div>
+            <div><h3><span>4</span>Enthrone</h3><p>We deliver, bless, and prepare your castle for generations of legacy and rule.</p></div>
+          </article>
+        </div>
+      </section>
+
+      <section class="testimonial">
+        <img class="shield" src="assets/reference-icons/icon-testimonial-shield.png" alt="" aria-hidden="true">
+        <blockquote>
+          "TriMoon Citadel Works did more than build a castle--they created the heart of our kingdom."
+          <p>Their vision, craftsmanship, and mastery of magic are unmatched.</p>
+        </blockquote>
+        <div class="cite"><cite>- Queen Alariana Valewind</cite><span>House Valewind, Kingdom of Lumeria</span></div>
+        <div class="dots">o o o</div>
+      </section>
+
+      <section class="cta" id="consultation">
+        <div class="icon"><img class="icon-img" src="assets/reference-icons/icon-cta-castle.png" alt="" aria-hidden="true"></div>
+        <div>
+          <h2>Begin Your Legacy Today</h2>
+          <p>Every great kingdom begins with a vision. Let us build it into something eternal.</p>
+        </div>
+        <a class="btn primary" href="#">Book a Design Consultation</a>
+      </section>
+    </main>
+
+    <footer id="contact">
+      <div>
+        <div class="footer-brand">
+          <span class="mark" aria-hidden="true"><img class="icon-img" src="assets/reference-icons/icon-brand.png" alt=""></span>
+          <span class="brand-title">TriMoon<span>Citadel Works</span></span>
+        </div>
+        <p>Engineering Legends. Etching Legacies.</p>
+      </div>
+      <div><h4>Explore</h4><a href="#">Castles</a><a href="#">Interiors</a><a href="#">Process</a><a href="#">Portfolio</a></div>
+      <div><h4>Company</h4><a href="#">About Us</a><a href="#">Our Artisans</a><a href="#">Careers</a><a href="#">News</a></div>
+      <div><h4>Support</h4><a href="#">FAQs</a><a href="#">Ward Guarantee</a><a href="#">Care &amp; Maintenance</a><a href="#">Contact</a></div>
+      <div><h4>Contact</h4><p>hello@trimooncitadel.com</p><p>+1 (555) 123-4567</p><p>Citadel Heights, Realm of Elarion</p></div>
+      <div class="copyright"><span>(c) 2024 TriMoon Citadel Works. All rights reserved.</span><span>Privacy Policy &nbsp; * &nbsp; Terms of Service</span></div>
+    </footer>
+  </div>
+</body>
+</html>
