@@ -11,10 +11,25 @@
       --muted: #d9d1c6;
       --gold: #d8a94d;
       --gold-2: #f0c773;
+      --gold-3: #8e5c22;
       --violet: #5e2397;
       --navy: #071a30;
       --navy-2: #0a213b;
       --line: rgba(221, 166, 75, .82);
+      --cut: 8px;
+      --ornate-cut: polygon(var(--cut) 0, calc(100% - var(--cut)) 0, 100% var(--cut), 100% calc(100% - var(--cut)), calc(100% - var(--cut)) 100%, var(--cut) 100%, 0 calc(100% - var(--cut)), 0 var(--cut));
+      --gold-border: linear-gradient(135deg, #f9d37b 0%, #9f6a29 26%, #f0c773 48%, #5f3917 73%, #e7b765 100%);
+      --inner-bevel:
+        inset 0 0 0 1px rgba(255, 238, 180, .14),
+        inset 0 0 0 4px rgba(5, 16, 31, .58),
+        inset 0 18px 34px rgba(71, 111, 161, .12),
+        0 14px 28px rgba(0, 0, 0, .22);
+      --starfield:
+        radial-gradient(circle at 8% 72%, rgba(244, 207, 111, .4) 0 1px, transparent 2px),
+        radial-gradient(circle at 12% 38%, rgba(238, 211, 255, .28) 0 1px, transparent 2px),
+        radial-gradient(circle at 30% 18%, rgba(139, 99, 210, .34) 0 1px, transparent 2px),
+        radial-gradient(circle at 67% 28%, rgba(244, 207, 111, .24) 0 1px, transparent 2px),
+        radial-gradient(circle at 91% 66%, rgba(238, 211, 255, .24) 0 1px, transparent 2px);
     }
 
     * {
@@ -64,8 +79,8 @@
       position: absolute;
       inset: 0;
       background:
-        linear-gradient(90deg, rgba(4, 13, 27, .95) 0%, rgba(5, 16, 31, .76) 27%, rgba(5, 16, 31, .12) 62%, rgba(5, 16, 31, .38) 100%),
-        linear-gradient(0deg, rgba(5, 16, 31, .45), transparent 48%);
+        linear-gradient(90deg, rgba(4, 13, 27, .92) 0%, rgba(5, 16, 31, .7) 27%, rgba(5, 16, 31, .06) 62%, rgba(5, 16, 31, .24) 100%),
+        linear-gradient(0deg, rgba(5, 16, 31, .18), transparent 50%);
     }
 
     .nav,
@@ -79,6 +94,7 @@
     }
 
     .nav {
+      width: min(1050px, calc(100% - 64px));
       height: 76px;
       display: flex;
       align-items: center;
@@ -111,23 +127,23 @@
     }
 
     .mark .icon-img {
-      width: 60px;
-      height: 60px;
+      width: 66px;
+      height: 66px;
     }
 
     .stat .icon-img {
-      width: 44px;
-      height: 44px;
+      width: 48px;
+      height: 48px;
     }
 
     .round .icon-img {
-      width: 62px;
-      height: 62px;
+      width: 58px;
+      height: 58px;
     }
 
     .service .icon-img {
-      width: 40px;
-      height: 40px;
+      width: 44px;
+      height: 44px;
     }
 
     .brand-title {
@@ -155,27 +171,40 @@
     }
 
     .btn {
+      --cut: 6px;
+      position: relative;
       display: inline-flex;
       align-items: center;
       justify-content: center;
       gap: 12px;
       min-height: 42px;
       padding: 0 24px;
-      border: 1px solid var(--gold);
+      border: 1px solid transparent;
       color: var(--ink);
-      background: rgba(7, 19, 37, .78);
+      clip-path: var(--ornate-cut);
+      background:
+        linear-gradient(rgba(7, 19, 37, .86), rgba(5, 15, 29, .9)) padding-box,
+        linear-gradient(135deg, var(--gold-2), var(--gold-3) 34%, var(--gold-2) 52%, var(--gold-3)) border-box;
       box-shadow:
         0 0 0 1px rgba(22, 9, 37, .7) inset,
-        0 0 0 3px rgba(216, 169, 77, .12) inset,
+        0 0 0 3px rgba(216, 169, 77, .13) inset,
         0 8px 22px rgba(0, 0, 0, .25);
       font-size: 15px;
       white-space: nowrap;
     }
 
+    .nav > .btn {
+      min-width: 182px;
+      padding-inline: 18px;
+    }
+
     .btn.primary {
       min-width: 252px;
-      background: linear-gradient(180deg, #7130ad 0%, #4d1b84 100%);
-      box-shadow: 0 0 0 2px rgba(245, 207, 111, .12) inset, 0 12px 28px rgba(14, 5, 27, .36);
+      background:
+        radial-gradient(circle at 52% 0%, rgba(244, 208, 111, .18), transparent 46%) padding-box,
+        linear-gradient(180deg, #8432be 0%, #5b1a97 100%) padding-box,
+        linear-gradient(135deg, var(--gold-2), var(--gold-3) 34%, var(--gold-2) 52%, var(--gold-3)) border-box;
+      box-shadow: 0 0 0 2px rgba(245, 207, 111, .18) inset, 0 12px 28px rgba(14, 5, 27, .36);
     }
 
     .btn.dark {
@@ -197,6 +226,7 @@
 
     .hero-copy {
       padding-top: 30px;
+      padding-left: 18px;
     }
 
     h1 {
@@ -235,23 +265,49 @@
       padding-bottom: 20px;
     }
 
+    main::before,
+    main::after {
+      content: "";
+      position: absolute;
+      top: 15px;
+      width: 214px;
+      height: 42px;
+      opacity: .16;
+      background: url("assets/cropped-icons-webp/ornament-dot-diamond-line.webp") center / contain no-repeat;
+      pointer-events: none;
+    }
+
+    main::before {
+      left: -46px;
+    }
+
+    main::after {
+      right: -46px;
+      transform: scaleX(-1);
+    }
+
     .stats {
-      width: 75%;
+      --cut: 7px;
+      position: relative;
+      width: 75.5%;
       min-height: 68px;
       margin: 0 auto 16px;
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       align-items: center;
-      border: 1px solid var(--line);
-      background: linear-gradient(180deg, rgba(8, 28, 52, .94), rgba(5, 19, 36, .94));
-      box-shadow: 0 0 0 1px rgba(0, 0, 0, .5) inset;
+      border: 1px solid transparent;
+      clip-path: var(--ornate-cut);
+      background:
+        linear-gradient(180deg, rgba(8, 28, 52, .96), rgba(5, 19, 36, .96)) padding-box,
+        var(--gold-border) border-box;
+      box-shadow: var(--inner-bevel);
     }
 
     .stat {
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 18px;
+      gap: 20px;
       min-height: 54px;
       border-right: 1px solid rgba(216, 169, 77, .35);
     }
@@ -282,17 +338,49 @@
     }
 
     .service {
-      min-height: 158px;
-      padding: 10px 14px;
+      --cut: 10px;
+      position: relative;
+      height: 162px;
+      padding: 11px 14px 12px;
       text-align: center;
-      border: 1px solid var(--line);
-      background: rgba(8, 27, 50, .83);
-      box-shadow: 0 0 38px rgba(56, 103, 158, .08) inset;
+      border: 1px solid transparent;
+      clip-path: var(--ornate-cut);
+      background:
+        radial-gradient(circle at 50% 46%, rgba(43, 86, 142, .17), transparent 58%) padding-box,
+        radial-gradient(circle at 50% -18%, rgba(255, 230, 168, .08), transparent 56%) padding-box,
+        linear-gradient(180deg, rgba(8, 27, 50, .88), rgba(5, 19, 36, .92)) padding-box,
+        var(--gold-border) border-box;
+      box-shadow: var(--inner-bevel);
+    }
+
+    .service::before,
+    .process::before,
+    .testimonial::before,
+    .cta::before {
+      content: "";
+      position: absolute;
+      inset: 2px;
+      border: 1px solid rgba(255, 226, 150, .08);
+      clip-path: var(--ornate-cut);
+      pointer-events: none;
+    }
+
+    .service::after,
+    .process::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background:
+        linear-gradient(135deg, rgba(255, 229, 151, .32) 0 1px, transparent 1px 24px, rgba(255, 229, 151, .2) 24px 25px, transparent 25px) top left / 54px 54px no-repeat,
+        linear-gradient(225deg, rgba(255, 229, 151, .28) 0 1px, transparent 1px 24px, rgba(255, 229, 151, .16) 24px 25px, transparent 25px) top right / 54px 54px no-repeat,
+        linear-gradient(45deg, rgba(255, 229, 151, .22) 0 1px, transparent 1px 24px, rgba(255, 229, 151, .14) 24px 25px, transparent 25px) bottom left / 54px 54px no-repeat,
+        linear-gradient(315deg, rgba(255, 229, 151, .22) 0 1px, transparent 1px 24px, rgba(255, 229, 151, .14) 24px 25px, transparent 25px) bottom right / 54px 54px no-repeat;
     }
 
     .icon {
-      height: 40px;
-      margin-bottom: 4px;
+      height: 44px;
+      margin-bottom: 3px;
       display: grid;
       place-items: center;
     }
@@ -307,29 +395,34 @@
       margin: 0;
       color: var(--muted);
       font-size: 13px;
-      line-height: 1.1;
+      line-height: 1.08;
     }
 
     .service .mini {
       display: block;
-      margin-top: 5px;
+      margin-top: 6px;
       color: var(--gold-2);
       font-size: 14px;
+      line-height: 1;
     }
 
     .feature-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 14px;
-      margin: 0 0 14px;
+      margin: 0 0 22px;
     }
 
     .feature {
+      --cut: 8px;
       position: relative;
+      isolation: isolate;
       min-height: 235px;
       overflow: hidden;
       border: 1px solid var(--line);
+      clip-path: var(--ornate-cut);
       background: #08182c;
+      box-shadow: var(--inner-bevel);
     }
 
     .feature picture {
@@ -338,6 +431,7 @@
 
     .feature img {
       position: absolute;
+      z-index: 0;
       inset: 0;
       width: 100%;
       height: 100%;
@@ -347,13 +441,29 @@
     .feature::after {
       content: "";
       position: absolute;
+      z-index: 1;
       inset: 0;
       background: linear-gradient(180deg, transparent 36%, rgba(2, 8, 18, .82) 100%);
     }
 
+    .feature::before {
+      content: "";
+      position: absolute;
+      z-index: 2;
+      inset: 0;
+      border: 1px solid rgba(255, 229, 151, .14);
+      clip-path: var(--ornate-cut);
+      background:
+        linear-gradient(135deg, rgba(255, 229, 151, .46) 0 1px, transparent 1px 28px, rgba(255, 229, 151, .22) 28px 29px, transparent 29px) top left / 62px 62px no-repeat,
+        linear-gradient(225deg, rgba(255, 229, 151, .4) 0 1px, transparent 1px 28px, rgba(255, 229, 151, .2) 28px 29px, transparent 29px) top right / 62px 62px no-repeat,
+        linear-gradient(45deg, rgba(255, 229, 151, .32) 0 1px, transparent 1px 28px, rgba(255, 229, 151, .18) 28px 29px, transparent 29px) bottom left / 62px 62px no-repeat,
+        linear-gradient(315deg, rgba(255, 229, 151, .32) 0 1px, transparent 1px 28px, rgba(255, 229, 151, .18) 28px 29px, transparent 29px) bottom right / 62px 62px no-repeat;
+      pointer-events: none;
+    }
+
     .feature-copy {
       position: absolute;
-      z-index: 1;
+      z-index: 3;
       left: 16px;
       right: 16px;
       bottom: 16px;
@@ -381,31 +491,45 @@
     }
 
     .process {
-      border: 1px solid var(--line);
-      background: rgba(8, 27, 50, .72);
+      --cut: 7px;
+      position: relative;
+      border: 1px solid transparent;
+      clip-path: var(--ornate-cut);
+      background:
+        radial-gradient(circle at 18% 50%, rgba(43, 86, 142, .16), transparent 18rem) padding-box,
+        linear-gradient(180deg, rgba(8, 27, 50, .82), rgba(5, 19, 36, .88)) padding-box,
+        var(--gold-border) border-box;
       margin: 0 0 14px;
       padding: 8px 18px 10px;
+      box-shadow: var(--inner-bevel);
     }
 
     .section-title {
       display: flex;
+      position: relative;
+      z-index: 2;
       align-items: center;
       justify-content: center;
-      gap: 18px;
-      margin: -25px auto 8px;
+      gap: 14px;
+      margin: -3px auto 11px;
       font-size: 25px;
       line-height: 1;
       background: #071a30;
       width: fit-content;
-      padding: 0 20px;
+      padding: 0 18px;
     }
 
     .section-title::before,
     .section-title::after {
       content: "";
-      width: 58px;
-      height: 1px;
-      background: var(--line);
+      width: 96px;
+      height: 14px;
+      background: url("assets/cropped-icons-webp/ornament-diamond-line.webp") center / contain no-repeat;
+      opacity: .58;
+    }
+
+    .section-title::after {
+      transform: scaleX(-1);
     }
 
     .steps {
@@ -416,8 +540,8 @@
 
     .step {
       display: grid;
-      grid-template-columns: 68px 1fr;
-      gap: 12px;
+      grid-template-columns: 72px 1fr;
+      gap: 10px;
       align-items: center;
       position: relative;
     }
@@ -431,8 +555,8 @@
     }
 
     .round {
-      width: 62px;
-      height: 62px;
+      width: 66px;
+      height: 66px;
       display: grid;
       place-items: center;
       border: 1px solid rgba(216, 169, 77, .52);
@@ -467,10 +591,37 @@
 
     .testimonial,
     .cta {
-      border: 1px solid var(--line);
+      --cut: 9px;
+      position: relative;
+      border: 1px solid transparent;
+      clip-path: var(--ornate-cut);
+      isolation: isolate;
       background:
-        radial-gradient(circle at 12% 25%, rgba(110, 45, 153, .38), transparent 18rem),
-        linear-gradient(90deg, rgba(52, 20, 92, .9), rgba(11, 26, 54, .92));
+        var(--starfield) padding-box,
+        radial-gradient(circle at 7% 34%, rgba(138, 54, 185, .52), transparent 14rem) padding-box,
+        radial-gradient(circle at 17% 115%, rgba(91, 37, 142, .46), transparent 16rem) padding-box,
+        linear-gradient(90deg, rgba(70, 24, 108, .95), rgba(11, 26, 54, .95) 55%, rgba(10, 24, 52, .96)) padding-box,
+        var(--gold-border) border-box;
+      box-shadow: var(--inner-bevel);
+    }
+
+    .testimonial > *,
+    .cta > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    .testimonial::after,
+    .cta::after {
+      content: "";
+      position: absolute;
+      z-index: 0;
+      inset: 0;
+      pointer-events: none;
+      background:
+        url("assets/cropped-icons-webp/ornament-star-line.webp") 4% 50% / 132px 38px no-repeat,
+        url("assets/cropped-icons-webp/ornament-diamond-line.webp") 95% 50% / 152px 30px no-repeat;
+      opacity: .16;
     }
 
     .testimonial {
@@ -483,8 +634,8 @@
     }
 
     .shield {
-      width: 76px;
-      height: 76px;
+      width: 82px;
+      height: 96px;
       margin: 0 auto;
       display: block;
       object-fit: contain;
@@ -527,10 +678,21 @@
       min-height: 88px;
       margin-bottom: 16px;
       display: grid;
-      grid-template-columns: 145px 1fr 360px;
+      grid-template-columns: 155px 1fr 360px;
       gap: 20px;
       align-items: center;
       padding: 6px 28px;
+    }
+
+    .cta .icon .icon-img {
+      width: 80px;
+      height: 80px;
+    }
+
+    .cta .icon {
+      height: 80px;
+      margin: 0;
+      align-self: center;
     }
 
     .cta h2 {
@@ -548,7 +710,8 @@
     footer {
       display: grid;
       grid-template-columns: 2.2fr .9fr 1.05fr 1.2fr 1.55fr;
-      gap: 24px;
+      column-gap: 24px;
+      row-gap: 8px;
       padding: 0 16px 14px;
       color: var(--muted);
     }
@@ -719,7 +882,7 @@
         <article class="feature">
           <picture>
             <source srcset="tower-perspective.webp" type="image/webp">
-            <img src="tower-perspective.png" width="1672" height="941" loading="lazy" decoding="async" alt="Castle towers overlooking a mountain lake at sunset">
+            <img src="tower-perspective.png" width="1672" height="941" loading="eager" decoding="async" alt="Castle towers overlooking a mountain lake at sunset">
           </picture>
           <div class="feature-copy">
             <h3>Master Planning &amp; Views</h3>
@@ -730,7 +893,7 @@
         <article class="feature" id="interiors">
           <picture>
             <source srcset="throne-room.webp" type="image/webp">
-            <img src="throne-room.png" width="1672" height="941" loading="lazy" decoding="async" alt="Grand magical throne room with stained glass and gold details">
+            <img src="throne-room.png" width="1672" height="941" loading="eager" decoding="async" alt="Grand magical throne room with stained glass and gold details">
           </picture>
           <div class="feature-copy">
             <h3>Interiors &amp; Craftsmanship</h3>
