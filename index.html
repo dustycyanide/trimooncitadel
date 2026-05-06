@@ -97,6 +97,10 @@
       color: rgba(221, 163, 76, .74);
     }
 
+    .mobile-frame {
+      display: none;
+    }
+
     .hero {
       position: relative;
       min-height: 430px;
@@ -1054,12 +1058,16 @@
         background-position: 58% center;
       }
 
-      .stats,
       .steps,
       .testimonial,
-      .cta,
-      footer {
+      .cta {
         grid-template-columns: 1fr;
+      }
+
+      footer {
+        grid-template-columns: 1.7fr 1fr 1fr;
+        column-gap: 22px;
+        row-gap: 18px;
       }
 
       .service-grid,
@@ -1072,8 +1080,7 @@
       }
 
       .stat {
-        border-right: 0;
-        border-bottom: 1px solid rgba(216, 169, 77, .35);
+        gap: 14px;
       }
 
       .service-grid {
@@ -1106,6 +1113,7 @@
 
       .steps {
         gap: 18px;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
       }
 
       .step {
@@ -1219,18 +1227,38 @@
 
       .stats,
       .service-grid,
-      .feature-grid {
+      .feature-grid,
+      .steps,
+      footer {
         grid-template-columns: 1fr;
+      }
+
+      .desktop-frame {
+        display: none;
+      }
+
+      .mobile-frame {
+        display: block;
       }
 
       .stat {
         justify-content: center;
         gap: 18px;
         padding: 8px 18px;
+        border-right: 0;
+        border-bottom: 1px solid rgba(216, 169, 77, .35);
+      }
+
+      .stat:last-child {
+        border-bottom: 0;
       }
 
       .feature {
         min-height: 236px;
+      }
+
+      #interiors img {
+        object-position: 18% center;
       }
 
       .section-title {
@@ -1291,6 +1319,23 @@
         </g>
       </symbol>
 
+      <symbol id="frame-card-mobile" viewBox="0 0 360 162">
+        <g fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" shape-rendering="geometricPrecision">
+          <path vector-effect="non-scaling-stroke" d="M10.5 1.5H349.5C349.5 6.2 353.8 8.3 358.5 9.5V152.5C353.8 153.7 349.5 155.8 349.5 160.5H10.5C10.5 155.8 6.2 153.7 1.5 152.5V9.5C6.2 8.3 10.5 6.2 10.5 1.5Z"/>
+          <path vector-effect="non-scaling-stroke" opacity=".18" d="M17.5 7.5H86.5M273.5 7.5H342.5M17.5 154.5H86.5M273.5 154.5H342.5"/>
+          <path vector-effect="non-scaling-stroke" opacity=".14" d="M7.5 17.5V48.5M352.5 17.5V48.5M7.5 113.5V144.5M352.5 113.5V144.5"/>
+          <path vector-effect="non-scaling-stroke" opacity=".12" d="M14.5 13.5H37.5M322.5 13.5H345.5M14.5 148.5H37.5M322.5 148.5H345.5"/>
+        </g>
+        <g fill="currentColor" opacity=".5">
+          <circle cx="5.5" cy="81" r=".85"/>
+          <circle cx="354.5" cy="81" r=".85"/>
+          <circle cx="10.5" cy="10.5" r=".65"/>
+          <circle cx="349.5" cy="10.5" r=".65"/>
+          <circle cx="10.5" cy="151.5" r=".65"/>
+          <circle cx="349.5" cy="151.5" r=".65"/>
+        </g>
+      </symbol>
+
       <symbol id="frame-feature" viewBox="0 0 500 235">
         <g fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" shape-rendering="geometricPrecision">
           <path vector-effect="non-scaling-stroke" d="M8.5 1.5H491.5C491.5 5.9 494.8 8.2 498.5 9.5V225.5C494.8 226.8 491.5 229.1 491.5 233.5H8.5C8.5 229.1 5.2 226.8 1.5 225.5V9.5C5.2 8.2 8.5 5.9 8.5 1.5Z"/>
@@ -1308,6 +1353,23 @@
         </g>
       </symbol>
 
+      <symbol id="frame-feature-mobile" viewBox="0 0 360 236">
+        <g fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" shape-rendering="geometricPrecision">
+          <path vector-effect="non-scaling-stroke" d="M8.5 1.5H351.5C351.5 5.9 354.8 8.2 358.5 9.5V226.5C354.8 227.8 351.5 230.1 351.5 234.5H8.5C8.5 230.1 5.2 227.8 1.5 226.5V9.5C5.2 8.2 8.5 5.9 8.5 1.5Z"/>
+          <path vector-effect="non-scaling-stroke" opacity=".18" d="M16.5 7.5H78.5M281.5 7.5H343.5M16.5 228.5H78.5M281.5 228.5H343.5"/>
+          <path vector-effect="non-scaling-stroke" opacity=".13" d="M7.5 18.5V72.5M352.5 18.5V72.5M7.5 163.5V217.5M352.5 163.5V217.5"/>
+          <path vector-effect="non-scaling-stroke" opacity=".1" d="M14.5 13.5H39.5M320.5 13.5H345.5M14.5 222.5H39.5M320.5 222.5H345.5"/>
+        </g>
+        <g fill="currentColor" opacity=".44">
+          <circle cx="5.5" cy="118" r=".85"/>
+          <circle cx="354.5" cy="118" r=".85"/>
+          <circle cx="8.5" cy="9.5" r=".65"/>
+          <circle cx="351.5" cy="9.5" r=".65"/>
+          <circle cx="8.5" cy="226.5" r=".65"/>
+          <circle cx="351.5" cy="226.5" r=".65"/>
+        </g>
+      </symbol>
+
       <symbol id="frame-panel" viewBox="0 0 1028 112">
         <g fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" shape-rendering="geometricPrecision">
           <path vector-effect="non-scaling-stroke" d="M8.5 1.5H1019.5C1019.6 4.7 1022 7 1026.5 8.5V103.5C1022 105 1019.6 107.3 1019.5 110.5H8.5C8.4 107.3 6 105 1.5 103.5V8.5C6 7 8.4 4.7 8.5 1.5Z"/>
@@ -1320,6 +1382,21 @@
           <circle cx="7.4" cy="107.9" r="1"/>
           <circle cx="1020.6" cy="4.1" r="1"/>
           <circle cx="1020.6" cy="107.9" r="1"/>
+        </g>
+      </symbol>
+
+      <symbol id="frame-panel-mobile" viewBox="0 0 360 320">
+        <g fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" shape-rendering="geometricPrecision">
+          <path vector-effect="non-scaling-stroke" d="M8.5 1.5H351.5C351.6 4.7 354 7 358.5 8.5V311.5C354 313 351.6 315.3 351.5 318.5H8.5C8.4 315.3 6 313 1.5 311.5V8.5C6 7 8.4 4.7 8.5 1.5Z"/>
+          <path vector-effect="non-scaling-stroke" d="M1.5 8.5C-.6 11.2-.6 14.8 1.5 17.5M1.5 302.5C-.6 305.2-.6 308.8 1.5 311.5"/>
+          <path vector-effect="non-scaling-stroke" d="M358.5 8.5C360.6 11.2 360.6 14.8 358.5 17.5M358.5 302.5C360.6 305.2 360.6 308.8 358.5 311.5"/>
+          <path vector-effect="non-scaling-stroke" d="M8.5 1.5C5.9 1.4 4.9 4.8 7.1 5.7C9.3 6.6 11.4 4.1 9.1 2.5M8.5 318.5C5.9 318.6 4.9 315.2 7.1 314.3C9.3 313.4 11.4 315.9 9.1 317.5M351.5 1.5C354.1 1.4 355.1 4.8 352.9 5.7C350.7 6.6 348.6 4.1 350.9 2.5M351.5 318.5C354.1 318.6 355.1 315.2 352.9 314.3C350.7 313.4 348.6 315.9 350.9 317.5"/>
+        </g>
+        <g fill="currentColor" opacity=".42">
+          <circle cx="7.4" cy="4.1" r="1"/>
+          <circle cx="7.4" cy="315.9" r="1"/>
+          <circle cx="352.6" cy="4.1" r="1"/>
+          <circle cx="352.6" cy="315.9" r="1"/>
         </g>
       </symbol>
 
@@ -1339,6 +1416,24 @@
           <circle cx="1019.5" cy="102.5" r=".65"/>
         </g>
       </symbol>
+
+      <symbol id="frame-process-panel-mobile" viewBox="0 0 360 520">
+        <g fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" shape-rendering="geometricPrecision">
+          <path vector-effect="non-scaling-stroke" d="M7.5 1.5H352.5C352.5 6 355.9 8.3 358.5 9.5V510.5C355.9 511.7 352.5 514 352.5 518.5H7.5C7.5 514 4.1 511.7 1.5 510.5V9.5C4.1 8.3 7.5 6 7.5 1.5Z"/>
+          <path vector-effect="non-scaling-stroke" opacity=".22" d="M16.5 7.5H82.5M277.5 7.5H343.5M16.5 512.5H82.5M277.5 512.5H343.5"/>
+          <path vector-effect="non-scaling-stroke" opacity=".18" d="M7.5 18.5V74.5M352.5 18.5V74.5M7.5 445.5V501.5M352.5 445.5V501.5"/>
+          <path vector-effect="non-scaling-stroke" opacity=".14" d="M1.5 9.5C-.7 13.1-.7 17.1 1.5 20.5M1.5 499.5C-.7 502.9-.7 506.9 1.5 510.5M358.5 9.5C360.7 13.1 360.7 17.1 358.5 20.5M358.5 499.5C360.7 502.9 360.7 506.9 358.5 510.5"/>
+        </g>
+        <g fill="currentColor" opacity=".5">
+          <circle cx="3.5" cy="260" r=".85"/>
+          <circle cx="356.5" cy="260" r=".85"/>
+          <circle cx="8.5" cy="9.5" r=".65"/>
+          <circle cx="351.5" cy="9.5" r=".65"/>
+          <circle cx="8.5" cy="510.5" r=".65"/>
+          <circle cx="351.5" cy="510.5" r=".65"/>
+        </g>
+      </symbol>
+
     </svg>
 
     <header class="hero">
@@ -1369,7 +1464,7 @@
 
     <main>
       <section class="stats" aria-label="Company statistics">
-        <svg class="stats-frame" viewBox="0 0 768 63" preserveAspectRatio="none" aria-hidden="true">
+        <svg class="stats-frame desktop-frame" viewBox="0 0 768 63" preserveAspectRatio="none" aria-hidden="true">
           <path class="line" d="M8.5 1.5H759.5C759.6 4.7 762 7 766.5 8.5V54.5C762 56 759.6 58.3 759.5 61.5H8.5C8.4 58.3 6 56 1.5 54.5V8.5C6 7 8.4 4.7 8.5 1.5Z"/>
           <path class="line" d="M1.5 8.5C-.6 11.2-.6 14.8 1.5 17.5M1.5 45.5C-.6 48.2-.6 51.8 1.5 54.5"/>
           <path class="line" d="M766.5 8.5C768.6 11.2 768.6 14.8 766.5 17.5M766.5 45.5C768.6 48.2 768.6 51.8 766.5 54.5"/>
@@ -1380,6 +1475,18 @@
           <circle class="corner-dot" cx="760.6" cy="58.9" r="1.55"/>
           <path class="side-diamond" d="M1.5 28.7l2.8 2.8-2.8 2.8-2.8-2.8Z"/>
           <path class="side-diamond" d="M766.5 28.7l2.8 2.8-2.8 2.8-2.8-2.8Z"/>
+        </svg>
+        <svg class="stats-frame mobile-frame" viewBox="0 0 360 204" preserveAspectRatio="none" aria-hidden="true">
+          <path class="line" d="M8.5 1.5H351.5C351.6 4.7 354 7 358.5 8.5V195.5C354 197 351.6 199.3 351.5 202.5H8.5C8.4 199.3 6 197 1.5 195.5V8.5C6 7 8.4 4.7 8.5 1.5Z"/>
+          <path class="line" d="M1.5 8.5C-.6 11.2-.6 14.8 1.5 17.5M1.5 186.5C-.6 189.2-.6 192.8 1.5 195.5"/>
+          <path class="line" d="M358.5 8.5C360.6 11.2 360.6 14.8 358.5 17.5M358.5 186.5C360.6 189.2 360.6 192.8 358.5 195.5"/>
+          <path class="line" d="M8.5 1.5C5.9 1.4 4.9 4.8 7.1 5.7C9.3 6.6 11.4 4.1 9.1 2.5M8.5 202.5C5.9 202.6 4.9 199.2 7.1 198.3C9.3 197.4 11.4 199.9 9.1 201.5M351.5 1.5C354.1 1.4 355.1 4.8 352.9 5.7C350.7 6.6 348.6 4.1 350.9 2.5M351.5 202.5C354.1 202.6 355.1 199.2 352.9 198.3C350.7 197.4 348.6 199.9 350.9 201.5"/>
+          <circle class="corner-dot" cx="7.4" cy="4.1" r="1.55"/>
+          <circle class="corner-dot" cx="7.4" cy="199.9" r="1.55"/>
+          <circle class="corner-dot" cx="352.6" cy="4.1" r="1.55"/>
+          <circle class="corner-dot" cx="352.6" cy="199.9" r="1.55"/>
+          <path class="side-diamond" d="M1.5 99.2l2.8 2.8-2.8 2.8-2.8-2.8Z"/>
+          <path class="side-diamond" d="M358.5 99.2l2.8 2.8-2.8 2.8-2.8-2.8Z"/>
         </svg>
         <div class="stat">
           <img class="icon-img" src="assets/cropped-icons-webp/icon-stat-castle.webp" alt="" aria-hidden="true">
@@ -1397,28 +1504,32 @@
 
       <section class="service-grid" id="castles">
         <article class="service">
-          <svg class="ornate-frame card-frame" viewBox="0 0 240 162" preserveAspectRatio="none" aria-hidden="true"><use href="#frame-card"></use></svg>
+          <svg class="ornate-frame card-frame desktop-frame" viewBox="0 0 240 162" preserveAspectRatio="none" aria-hidden="true"><use href="#frame-card"></use></svg>
+          <svg class="ornate-frame card-frame mobile-frame" viewBox="0 0 360 162" preserveAspectRatio="none" aria-hidden="true"><use href="#frame-card-mobile"></use></svg>
           <div class="icon"><img class="icon-img" src="assets/cropped-icons-webp/icon-arcane-arch.webp" alt="" aria-hidden="true"></div>
           <h3>Arcane Architecture</h3>
           <p>Where ancient magic meets structural mastery. Our designs are timeless, awe-inspiring, and built to endure.</p>
           <img class="mini" src="assets/cropped-icons-webp/icon-sparkle-diamond.webp" alt="" aria-hidden="true">
         </article>
         <article class="service">
-          <svg class="ornate-frame card-frame" viewBox="0 0 240 162" preserveAspectRatio="none" aria-hidden="true"><use href="#frame-card"></use></svg>
+          <svg class="ornate-frame card-frame desktop-frame" viewBox="0 0 240 162" preserveAspectRatio="none" aria-hidden="true"><use href="#frame-card"></use></svg>
+          <svg class="ornate-frame card-frame mobile-frame" viewBox="0 0 360 162" preserveAspectRatio="none" aria-hidden="true"><use href="#frame-card-mobile"></use></svg>
           <div class="icon"><img class="icon-img" src="assets/cropped-icons-webp/icon-ward-shield.webp" alt="" aria-hidden="true"></div>
           <h3>Defensive Wards</h3>
           <p>Integrated protective enchantments and smart defense systems keep your realm secure across every plane of existence.</p>
           <img class="mini" src="assets/cropped-icons-webp/icon-sparkle-diamond.webp" alt="" aria-hidden="true">
         </article>
         <article class="service">
-          <svg class="ornate-frame card-frame" viewBox="0 0 240 162" preserveAspectRatio="none" aria-hidden="true"><use href="#frame-card"></use></svg>
+          <svg class="ornate-frame card-frame desktop-frame" viewBox="0 0 240 162" preserveAspectRatio="none" aria-hidden="true"><use href="#frame-card"></use></svg>
+          <svg class="ornate-frame card-frame mobile-frame" viewBox="0 0 360 162" preserveAspectRatio="none" aria-hidden="true"><use href="#frame-card-mobile"></use></svg>
           <div class="icon"><img class="icon-img" src="assets/cropped-icons-webp/icon-royal-interiors.webp" alt="" aria-hidden="true"></div>
           <h3>Royal Interiors</h3>
           <p>Bespoke halls and chambers crafted with rare materials, enchantments, and unrivaled artisan craftsmanship.</p>
           <img class="mini" src="assets/cropped-icons-webp/icon-sparkle-diamond.webp" alt="" aria-hidden="true">
         </article>
         <article class="service">
-          <svg class="ornate-frame card-frame" viewBox="0 0 240 162" preserveAspectRatio="none" aria-hidden="true"><use href="#frame-card"></use></svg>
+          <svg class="ornate-frame card-frame desktop-frame" viewBox="0 0 240 162" preserveAspectRatio="none" aria-hidden="true"><use href="#frame-card"></use></svg>
+          <svg class="ornate-frame card-frame mobile-frame" viewBox="0 0 360 162" preserveAspectRatio="none" aria-hidden="true"><use href="#frame-card-mobile"></use></svg>
           <div class="icon"><img class="icon-img" src="assets/cropped-icons-webp/icon-valley-lake.webp" alt="" aria-hidden="true"></div>
           <h3>Valley &amp; Lake Masterplans</h3>
           <p>Elevated site design that honors the land, the waters, and the views, crafted for legacy and generations to come.</p>
@@ -1432,7 +1543,8 @@
             <source srcset="tower-perspective.webp" type="image/webp">
             <img src="tower-perspective.png" width="1672" height="941" loading="eager" decoding="async" alt="Castle towers overlooking a mountain lake at sunset">
           </picture>
-          <svg class="ornate-frame feature-frame" viewBox="0 0 500 235" preserveAspectRatio="none" aria-hidden="true"><use href="#frame-feature"></use></svg>
+          <svg class="ornate-frame feature-frame desktop-frame" viewBox="0 0 500 235" preserveAspectRatio="none" aria-hidden="true"><use href="#frame-feature"></use></svg>
+          <svg class="ornate-frame feature-frame mobile-frame" viewBox="0 0 360 236" preserveAspectRatio="none" aria-hidden="true"><use href="#frame-feature-mobile"></use></svg>
           <div class="feature-copy">
             <h3>Master Planning &amp; Views</h3>
             <p>Strategic site design that frames breathtaking vistas and harmonizes architecture with nature.</p>
@@ -1444,7 +1556,8 @@
             <source srcset="throne-room.webp" type="image/webp">
             <img src="throne-room.png" width="1672" height="941" loading="eager" decoding="async" alt="Grand magical throne room with stained glass and gold details">
           </picture>
-          <svg class="ornate-frame feature-frame" viewBox="0 0 500 235" preserveAspectRatio="none" aria-hidden="true"><use href="#frame-feature"></use></svg>
+          <svg class="ornate-frame feature-frame desktop-frame" viewBox="0 0 500 235" preserveAspectRatio="none" aria-hidden="true"><use href="#frame-feature"></use></svg>
+          <svg class="ornate-frame feature-frame mobile-frame" viewBox="0 0 360 236" preserveAspectRatio="none" aria-hidden="true"><use href="#frame-feature-mobile"></use></svg>
           <div class="feature-copy">
             <h3>Interiors &amp; Craftsmanship</h3>
             <p>Throne rooms, great halls, and private chambers crafted with rare materials and timeless precision.</p>
