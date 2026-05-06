@@ -18,12 +18,12 @@
       --line: rgba(221, 166, 75, .82);
       --cut: 8px;
       --ornate-cut: polygon(var(--cut) 0, calc(100% - var(--cut)) 0, 100% var(--cut), 100% calc(100% - var(--cut)), calc(100% - var(--cut)) 100%, var(--cut) 100%, 0 calc(100% - var(--cut)), 0 var(--cut));
-      --gold-border: linear-gradient(135deg, #f9d37b 0%, #9f6a29 26%, #f0c773 48%, #5f3917 73%, #e7b765 100%);
       --inner-bevel:
         inset 0 0 0 1px rgba(255, 238, 180, .14),
-        inset 0 0 0 4px rgba(5, 16, 31, .58),
-        inset 0 18px 34px rgba(71, 111, 161, .12),
-        0 14px 28px rgba(0, 0, 0, .22);
+        inset 0 0 0 3px rgba(5, 16, 31, .62),
+        inset 0 0 0 5px rgba(238, 194, 111, .04),
+        inset 0 18px 34px rgba(71, 111, 161, .16),
+        0 14px 28px rgba(0, 0, 0, .24);
       --starfield:
         radial-gradient(circle at 8% 72%, rgba(244, 207, 111, .4) 0 1px, transparent 2px),
         radial-gradient(circle at 12% 38%, rgba(238, 211, 255, .28) 0 1px, transparent 2px),
@@ -59,6 +59,44 @@
       background-size: 48px 48px;
     }
 
+    .svg-defs {
+      position: absolute;
+      width: 0;
+      height: 0;
+      overflow: hidden;
+    }
+
+    .ornate-frame {
+      position: absolute;
+      inset: 0;
+      z-index: 3;
+      display: block;
+      width: 100%;
+      height: 100%;
+      overflow: visible;
+      color: rgba(228, 169, 75, .88);
+      pointer-events: none;
+    }
+
+    .button-frame {
+      z-index: 0;
+      color: rgba(235, 180, 83, .9);
+    }
+
+    .card-frame {
+      color: rgba(229, 172, 79, .92);
+    }
+
+    .feature-frame {
+      z-index: 4;
+      color: rgba(232, 171, 78, .88);
+    }
+
+    .panel-frame {
+      z-index: 2;
+      color: rgba(221, 163, 76, .74);
+    }
+
     .hero {
       position: relative;
       min-height: 430px;
@@ -79,7 +117,8 @@
       position: absolute;
       inset: 0;
       background:
-        linear-gradient(90deg, rgba(4, 13, 27, .92) 0%, rgba(5, 16, 31, .7) 27%, rgba(5, 16, 31, .06) 62%, rgba(5, 16, 31, .24) 100%),
+        radial-gradient(ellipse at 20% 38%, rgba(2, 7, 18, .3) 0%, rgba(2, 7, 18, .18) 31%, transparent 54%),
+        linear-gradient(90deg, rgba(4, 13, 27, .96) 0%, rgba(5, 16, 31, .78) 27%, rgba(5, 16, 31, .1) 62%, rgba(5, 16, 31, .14) 100%),
         linear-gradient(0deg, rgba(5, 16, 31, .18), transparent 50%);
     }
 
@@ -127,18 +166,31 @@
     }
 
     .mark .icon-img {
-      width: 66px;
-      height: 66px;
+      width: 58px;
+      height: 58px;
+    }
+
+    .brand .mark {
+      transform: translate(-2px, 4px);
+    }
+
+    .footer-brand .mark {
+      transform: translate(4px, 4px);
     }
 
     .stat .icon-img {
-      width: 48px;
-      height: 48px;
+      width: 46px;
+      height: 46px;
+      transform: translate(8px, 0);
+    }
+
+    .stat:nth-child(3) .icon-img {
+      transform: translate(-8px, 0);
     }
 
     .round .icon-img {
-      width: 58px;
-      height: 58px;
+      width: 54px;
+      height: 54px;
     }
 
     .service .icon-img {
@@ -168,6 +220,7 @@
       align-items: center;
       font-size: 15px;
       text-shadow: 0 2px 8px rgba(0, 0, 0, .75);
+      transform: translateY(-3px);
     }
 
     .btn {
@@ -179,15 +232,17 @@
       gap: 12px;
       min-height: 42px;
       padding: 0 24px;
-      border: 1px solid transparent;
+      border: 0;
       color: var(--ink);
+      isolation: isolate;
       clip-path: var(--ornate-cut);
       background:
-        linear-gradient(rgba(7, 19, 37, .86), rgba(5, 15, 29, .9)) padding-box,
-        linear-gradient(135deg, var(--gold-2), var(--gold-3) 34%, var(--gold-2) 52%, var(--gold-3)) border-box;
+        linear-gradient(90deg, rgba(248, 207, 113, .15), transparent 13%, transparent 87%, rgba(248, 207, 113, .13)) padding-box,
+        linear-gradient(180deg, #071428 0%, #061122 100%) padding-box;
       box-shadow:
         0 0 0 1px rgba(22, 9, 37, .7) inset,
         0 0 0 3px rgba(216, 169, 77, .13) inset,
+        inset 0 1px 0 rgba(255, 232, 168, .26),
         0 8px 22px rgba(0, 0, 0, .25);
       font-size: 15px;
       white-space: nowrap;
@@ -195,33 +250,79 @@
 
     .nav > .btn {
       min-width: 182px;
-      padding-inline: 18px;
+      justify-content: center;
+      gap: 10px;
+      padding-inline: 42px 17px;
     }
 
     .btn.primary {
       min-width: 252px;
       background:
-        radial-gradient(circle at 52% 0%, rgba(244, 208, 111, .18), transparent 46%) padding-box,
-        linear-gradient(180deg, #8432be 0%, #5b1a97 100%) padding-box,
-        linear-gradient(135deg, var(--gold-2), var(--gold-3) 34%, var(--gold-2) 52%, var(--gold-3)) border-box;
-      box-shadow: 0 0 0 2px rgba(245, 207, 111, .18) inset, 0 12px 28px rgba(14, 5, 27, .36);
+        radial-gradient(circle at 50% 0%, rgba(255, 229, 151, .16), transparent 43%) padding-box,
+        linear-gradient(90deg, rgba(255, 224, 133, .1), transparent 15%, transparent 84%, rgba(255, 224, 133, .1)) padding-box,
+        linear-gradient(180deg, #552b7e 0%, #472069 48%, #35184f 100%) padding-box;
+      box-shadow:
+        0 0 0 2px rgba(245, 207, 111, .18) inset,
+        inset 0 1px 0 rgba(255, 232, 168, .24),
+        0 12px 28px rgba(14, 5, 27, .34);
     }
 
     .btn.dark {
       min-width: 218px;
     }
 
+    .btn > span {
+      position: relative;
+      z-index: 2;
+    }
+
+    .btn::before,
     .btn::after,
     .spark {
-      content: "*";
-      color: var(--gold-2);
-      font-size: 25px;
-      line-height: 1;
+      content: "";
+      position: relative;
+      z-index: 2;
+      flex: 0 0 auto;
+      width: 19px;
+      height: 19px;
+      background: url("assets/cropped-icons-webp/icon-starburst.webp") center / contain no-repeat;
+      filter: brightness(1.14) saturate(1.12) drop-shadow(0 0 3px rgba(255, 221, 124, .55));
+    }
+
+    .btn::before {
+      display: none;
+    }
+
+    .nav > .btn::before {
+      display: block;
+      width: 19px;
+      height: 19px;
+      position: absolute;
+      left: 19px;
+      top: 50%;
+      transform: translateY(-49%);
+    }
+
+    .nav > .btn::after {
+      display: none;
+    }
+
+    .hero-actions .btn.primary::after {
+      width: 21px;
+      height: 21px;
+      margin-left: 2px;
+      transform: translate(-2px, -1px);
     }
 
     .btn.dark::after {
       content: ">";
+      width: auto;
+      height: auto;
+      background: none;
+      filter: none;
+      color: var(--gold-2);
       font-size: 18px;
+      line-height: 1;
     }
 
     .hero-copy {
@@ -232,6 +333,7 @@
     h1 {
       max-width: 455px;
       margin: 0 0 14px;
+      color: #f8f8f8;
       font-size: clamp(40px, 3.75vw, 44px);
       line-height: .98;
       font-weight: 400;
@@ -239,7 +341,7 @@
     }
 
     h1 em {
-      color: var(--gold-2);
+      color: #f6c976;
       font-style: normal;
     }
 
@@ -262,53 +364,97 @@
 
     main {
       margin-top: -8px;
-      padding-bottom: 20px;
+      padding-bottom: 0;
     }
 
     main::before,
     main::after {
       content: "";
       position: absolute;
-      top: 15px;
-      width: 214px;
-      height: 42px;
-      opacity: .16;
-      background: url("assets/cropped-icons-webp/ornament-dot-diamond-line.webp") center / contain no-repeat;
+      top: 35px;
+      width: 178px;
+      height: 1px;
+      opacity: .18;
+      background:
+        linear-gradient(90deg, transparent 0 8px, rgba(160, 130, 76, .45) 8px 52px, transparent 52px 64px, rgba(160, 130, 76, .28) 64px 100%, transparent);
       pointer-events: none;
     }
 
     main::before {
-      left: -46px;
+      left: -18px;
     }
 
     main::after {
-      right: -46px;
-      transform: scaleX(-1);
+      right: -18px;
     }
 
     .stats {
       --cut: 7px;
       position: relative;
-      width: 75.5%;
-      min-height: 68px;
+      width: 74.7%;
+      min-height: 63px;
       margin: 0 auto 16px;
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       align-items: center;
-      border: 1px solid transparent;
+      border: 0;
+      background: none;
+      box-shadow: none;
+    }
+
+    .stats::before {
+      content: "";
+      position: absolute;
+      pointer-events: none;
+    }
+
+    .stats::before {
+      z-index: 0;
+      inset: 0;
       clip-path: var(--ornate-cut);
-      background:
-        linear-gradient(180deg, rgba(8, 28, 52, .96), rgba(5, 19, 36, .96)) padding-box,
-        var(--gold-border) border-box;
-      box-shadow: var(--inner-bevel);
+      background: linear-gradient(180deg, rgba(8, 28, 52, .97), rgba(5, 19, 36, .97));
+      box-shadow:
+        inset 0 1px 0 rgba(83, 124, 161, .13),
+        inset 0 -1px 0 rgba(0, 0, 0, .28),
+        inset 0 0 18px rgba(29, 79, 121, .07);
+    }
+
+    .stats-frame {
+      position: absolute;
+      z-index: 3;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      overflow: visible;
+      pointer-events: none;
+    }
+
+    .stats-frame .line {
+      fill: none;
+      stroke: rgba(228, 169, 75, .86);
+      stroke-width: 1;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      vector-effect: non-scaling-stroke;
+      shape-rendering: geometricPrecision;
+    }
+
+    .stats-frame .muted-line {
+      stroke: rgba(228, 169, 75, .55);
+    }
+
+    .stats-frame .dot {
+      fill: rgba(232, 178, 82, .88);
     }
 
     .stat {
+      position: relative;
+      z-index: 2;
       display: flex;
       align-items: center;
       justify-content: center;
       gap: 20px;
-      min-height: 54px;
+      min-height: 52px;
       border-right: 1px solid rgba(216, 169, 77, .35);
     }
 
@@ -340,42 +486,23 @@
     .service {
       --cut: 10px;
       position: relative;
+      isolation: isolate;
       height: 162px;
       padding: 11px 14px 12px;
       text-align: center;
-      border: 1px solid transparent;
+      border: 0;
       clip-path: var(--ornate-cut);
       background:
-        radial-gradient(circle at 50% 46%, rgba(43, 86, 142, .17), transparent 58%) padding-box,
-        radial-gradient(circle at 50% -18%, rgba(255, 230, 168, .08), transparent 56%) padding-box,
-        linear-gradient(180deg, rgba(8, 27, 50, .88), rgba(5, 19, 36, .92)) padding-box,
-        var(--gold-border) border-box;
+        radial-gradient(circle at 50% 40%, rgba(70, 108, 148, .22), transparent 55%) padding-box,
+        radial-gradient(circle at 50% -18%, rgba(255, 230, 168, .1), transparent 56%) padding-box,
+        linear-gradient(180deg, rgba(18, 37, 57, .94), rgba(6, 20, 38, .95) 58%, rgba(4, 16, 31, .96)) padding-box;
       box-shadow: var(--inner-bevel);
     }
 
-    .service::before,
-    .process::before,
-    .testimonial::before,
-    .cta::before {
-      content: "";
-      position: absolute;
-      inset: 2px;
-      border: 1px solid rgba(255, 226, 150, .08);
-      clip-path: var(--ornate-cut);
-      pointer-events: none;
-    }
-
-    .service::after,
-    .process::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      pointer-events: none;
-      background:
-        linear-gradient(135deg, rgba(255, 229, 151, .32) 0 1px, transparent 1px 24px, rgba(255, 229, 151, .2) 24px 25px, transparent 25px) top left / 54px 54px no-repeat,
-        linear-gradient(225deg, rgba(255, 229, 151, .28) 0 1px, transparent 1px 24px, rgba(255, 229, 151, .16) 24px 25px, transparent 25px) top right / 54px 54px no-repeat,
-        linear-gradient(45deg, rgba(255, 229, 151, .22) 0 1px, transparent 1px 24px, rgba(255, 229, 151, .14) 24px 25px, transparent 25px) bottom left / 54px 54px no-repeat,
-        linear-gradient(315deg, rgba(255, 229, 151, .22) 0 1px, transparent 1px 24px, rgba(255, 229, 151, .14) 24px 25px, transparent 25px) bottom right / 54px 54px no-repeat;
+    .service > :not(.ornate-frame),
+    .process > :not(.ornate-frame) {
+      position: relative;
+      z-index: 1;
     }
 
     .icon {
@@ -383,6 +510,14 @@
       margin-bottom: 3px;
       display: grid;
       place-items: center;
+    }
+
+    .service .icon {
+      transform: translateY(-1px);
+    }
+
+    .service:nth-child(4) .icon {
+      transform: translate(-5px, -1px);
     }
 
     .service h3 {
@@ -410,7 +545,7 @@
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 14px;
-      margin: 0 0 22px;
+      margin: 0 0 14px;
     }
 
     .feature {
@@ -419,7 +554,7 @@
       isolation: isolate;
       min-height: 235px;
       overflow: hidden;
-      border: 1px solid var(--line);
+      border: 0;
       clip-path: var(--ornate-cut);
       background: #08182c;
       box-shadow: var(--inner-bevel);
@@ -444,21 +579,6 @@
       z-index: 1;
       inset: 0;
       background: linear-gradient(180deg, transparent 36%, rgba(2, 8, 18, .82) 100%);
-    }
-
-    .feature::before {
-      content: "";
-      position: absolute;
-      z-index: 2;
-      inset: 0;
-      border: 1px solid rgba(255, 229, 151, .14);
-      clip-path: var(--ornate-cut);
-      background:
-        linear-gradient(135deg, rgba(255, 229, 151, .46) 0 1px, transparent 1px 28px, rgba(255, 229, 151, .22) 28px 29px, transparent 29px) top left / 62px 62px no-repeat,
-        linear-gradient(225deg, rgba(255, 229, 151, .4) 0 1px, transparent 1px 28px, rgba(255, 229, 151, .2) 28px 29px, transparent 29px) top right / 62px 62px no-repeat,
-        linear-gradient(45deg, rgba(255, 229, 151, .32) 0 1px, transparent 1px 28px, rgba(255, 229, 151, .18) 28px 29px, transparent 29px) bottom left / 62px 62px no-repeat,
-        linear-gradient(315deg, rgba(255, 229, 151, .32) 0 1px, transparent 1px 28px, rgba(255, 229, 151, .18) 28px 29px, transparent 29px) bottom right / 62px 62px no-repeat;
-      pointer-events: none;
     }
 
     .feature-copy {
@@ -493,15 +613,21 @@
     .process {
       --cut: 7px;
       position: relative;
-      border: 1px solid transparent;
+      isolation: isolate;
+      border: 0;
       clip-path: var(--ornate-cut);
       background:
-        radial-gradient(circle at 18% 50%, rgba(43, 86, 142, .16), transparent 18rem) padding-box,
-        linear-gradient(180deg, rgba(8, 27, 50, .82), rgba(5, 19, 36, .88)) padding-box,
-        var(--gold-border) border-box;
+        radial-gradient(circle at 20% 48%, rgba(89, 115, 141, .08), transparent 18rem),
+        linear-gradient(180deg, rgba(11, 30, 52, .26), rgba(6, 20, 38, .2));
       margin: 0 0 14px;
-      padding: 8px 18px 10px;
-      box-shadow: var(--inner-bevel);
+      padding: 3px 18px 20px;
+      box-shadow:
+        inset 0 0 0 1px rgba(255, 232, 159, .035),
+        inset 0 13px 26px rgba(71, 111, 161, .07);
+    }
+
+    .process::after {
+      content: none;
     }
 
     .section-title {
@@ -511,12 +637,14 @@
       align-items: center;
       justify-content: center;
       gap: 14px;
-      margin: -3px auto 11px;
+      margin: -2px auto 4px;
       font-size: 25px;
       line-height: 1;
-      background: #071a30;
+      background: transparent;
       width: fit-content;
-      padding: 0 18px;
+      padding: 0 20px;
+      color: var(--ink);
+      text-shadow: 0 1px 3px #02101f, 0 0 10px rgba(2, 12, 24, .9);
     }
 
     .section-title::before,
@@ -525,7 +653,8 @@
       width: 96px;
       height: 14px;
       background: url("assets/cropped-icons-webp/ornament-diamond-line.webp") center / contain no-repeat;
-      opacity: .58;
+      opacity: .82;
+      filter: brightness(1.18) saturate(1.18);
     }
 
     .section-title::after {
@@ -535,39 +664,65 @@
     .steps {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
-      gap: 18px;
+      gap: 14px;
     }
 
     .step {
       display: grid;
-      grid-template-columns: 72px 1fr;
-      gap: 10px;
+      grid-template-columns: 76px 1fr;
+      gap: 8px;
       align-items: center;
       position: relative;
+    }
+
+    .step:nth-child(2) {
+      transform: translateX(14px);
+    }
+
+    .step:nth-child(3) {
+      transform: translateX(22px);
+    }
+
+    .step:nth-child(4) {
+      transform: translateX(8px);
     }
 
     .step:not(:last-child)::after {
       content: "->";
       position: absolute;
-      right: -18px;
-      top: 38px;
+      right: -15px;
+      top: 35px;
       color: var(--gold-2);
+      font-weight: 400;
     }
 
     .round {
-      width: 66px;
-      height: 66px;
+      width: 70px;
+      height: 70px;
       display: grid;
       place-items: center;
       border: 1px solid rgba(216, 169, 77, .52);
       border-radius: 50%;
       overflow: hidden;
+      transform: translateY(-4px);
+    }
+
+    .step:nth-child(2) .round {
+      transform: translate(12px, -4px);
+    }
+
+    .step:nth-child(3) .round {
+      transform: translate(8px, -4px);
+    }
+
+    .step:nth-child(4) .round {
+      transform: translate(6px, -4px);
     }
 
     .step h3 {
       margin: 0 0 4px;
       color: var(--gold-2);
-      font-size: 17px;
+      font-size: 16px;
       font-weight: 400;
     }
 
@@ -585,28 +740,36 @@
     .step p {
       margin: 0;
       color: var(--ink);
-      font-size: 12px;
-      line-height: 1.18;
+      font-size: 11px;
+      line-height: 1.14;
+      font-weight: 400;
+    }
+
+    .step:nth-child(4) p {
+      max-width: 166px;
+    }
+
+    .no-break {
+      white-space: nowrap;
     }
 
     .testimonial,
     .cta {
       --cut: 9px;
       position: relative;
-      border: 1px solid transparent;
+      border: 0;
       clip-path: var(--ornate-cut);
       isolation: isolate;
       background:
         var(--starfield) padding-box,
-        radial-gradient(circle at 7% 34%, rgba(138, 54, 185, .52), transparent 14rem) padding-box,
-        radial-gradient(circle at 17% 115%, rgba(91, 37, 142, .46), transparent 16rem) padding-box,
-        linear-gradient(90deg, rgba(70, 24, 108, .95), rgba(11, 26, 54, .95) 55%, rgba(10, 24, 52, .96)) padding-box,
-        var(--gold-border) border-box;
+        radial-gradient(circle at 8% 36%, rgba(126, 48, 181, .56), transparent 12rem) padding-box,
+        radial-gradient(circle at 20% 118%, rgba(78, 34, 130, .48), transparent 15rem) padding-box,
+        linear-gradient(90deg, rgba(75, 27, 112, .98) 0%, rgba(29, 29, 69, .98) 18%, rgba(10, 25, 54, .97) 52%, rgba(9, 24, 50, .98) 100%) padding-box;
       box-shadow: var(--inner-bevel);
     }
 
-    .testimonial > *,
-    .cta > * {
+    .testimonial > :not(.ornate-frame),
+    .cta > :not(.ornate-frame) {
       position: relative;
       z-index: 1;
     }
@@ -621,98 +784,169 @@
       background:
         url("assets/cropped-icons-webp/ornament-star-line.webp") 4% 50% / 132px 38px no-repeat,
         url("assets/cropped-icons-webp/ornament-diamond-line.webp") 95% 50% / 152px 30px no-repeat;
-      opacity: .16;
+      opacity: .2;
     }
 
     .testimonial {
       display: grid;
-      grid-template-columns: 170px 1fr 300px;
+      grid-template-columns: 170px 1fr 286px;
       align-items: center;
       min-height: 96px;
-      padding: 6px 26px;
+      padding: 4px 26px 13px;
       margin-bottom: 16px;
+      background:
+        var(--starfield) padding-box,
+        radial-gradient(circle at 4% 64%, rgba(236, 211, 255, .2) 0 1px, transparent 2px) padding-box,
+        radial-gradient(circle at 6% 48%, rgba(244, 207, 111, .18) 0 1px, transparent 2px) padding-box,
+        radial-gradient(circle at 94% 68%, rgba(236, 211, 255, .18) 0 1px, transparent 2px) padding-box,
+        radial-gradient(circle at 98% 18%, rgba(244, 207, 111, .18) 0 1px, transparent 2px) padding-box,
+        radial-gradient(circle at 8% 52%, rgba(73, 28, 122, .26), transparent 10.5rem) padding-box,
+        radial-gradient(circle at 18% 112%, rgba(50, 27, 94, .24), transparent 13rem) padding-box,
+        linear-gradient(90deg, rgba(25, 16, 52, .98) 0%, rgba(27, 23, 62, .98) 38%, rgba(12, 24, 52, .98) 74%, rgba(9, 23, 49, .98) 100%) padding-box;
+    }
+
+    .testimonial::after {
+      background: none;
+      opacity: 0;
     }
 
     .shield {
       width: 82px;
-      height: 96px;
+      height: 82px;
       margin: 0 auto;
       display: block;
       object-fit: contain;
+      transform: translate(32px, 4px) scale(1.02, 1.18);
     }
 
     blockquote {
       margin: 0;
-      font-size: 20px;
-      line-height: 1.14;
+      font-family: "Times New Roman", Times, serif;
+      font-size: 18px;
+      line-height: 1.16;
+      font-weight: 400;
+      color: #fff3e1;
+      transform: translate(4px, 0);
+    }
+
+    .quote-continuation {
+      display: inline-block;
+      transform: translateX(8px);
     }
 
     blockquote p {
-      margin: 5px 0 0;
+      margin: 3px 0 0 9px;
       color: var(--muted);
       font-size: 14px;
+    }
+
+    .cite {
+      transform: translateY(3px);
     }
 
     cite {
       color: var(--gold-2);
       font-style: normal;
-      font-size: 14px;
+      font-size: 13px;
     }
 
     .cite span {
       display: block;
       margin-top: 4px;
       color: var(--muted);
-      font-size: 13px;
+      font-size: 12px;
     }
 
     .dots {
-      grid-column: 1 / -1;
-      text-align: center;
-      color: rgba(255, 247, 232, .55);
-      letter-spacing: 8px;
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 6px;
+      display: flex;
+      justify-content: center;
+      gap: 10px;
       line-height: 1;
+      transform: translateX(4px);
+    }
+
+    .dots span {
+      width: 6px;
+      height: 6px;
+      border: 1px solid rgba(255, 247, 232, .62);
+      border-radius: 50%;
+    }
+
+    .dots span:first-child {
+      border-color: rgba(239, 198, 104, .82);
+      background: rgba(239, 198, 104, .82);
     }
 
     .cta {
-      min-height: 88px;
-      margin-bottom: 16px;
+      background:
+        var(--starfield) padding-box,
+        radial-gradient(circle at 8% 48%, rgba(121, 45, 172, .24), transparent 10rem) padding-box,
+        linear-gradient(90deg, rgba(35, 22, 67, .98) 0%, rgba(35, 23, 70, .98) 16%, rgba(17, 26, 59, .98) 31%, rgba(9, 24, 50, .98) 100%) padding-box;
+      min-height: 84px;
+      margin-bottom: 12px;
       display: grid;
-      grid-template-columns: 155px 1fr 360px;
-      gap: 20px;
+      grid-template-columns: 145px 1fr 330px;
+      gap: 10px;
       align-items: center;
-      padding: 6px 28px;
+      padding: 5px 28px;
     }
 
     .cta .icon .icon-img {
-      width: 80px;
-      height: 80px;
+      width: 64px;
+      height: 64px;
     }
 
     .cta .icon {
-      height: 80px;
+      height: 74px;
       margin: 0;
       align-self: center;
+      transform: translate(-6px, 1px);
+    }
+
+    .cta > div:nth-of-type(2) {
+      transform: translateY(4px);
     }
 
     .cta h2 {
-      margin: 0 0 8px;
-      font-size: 31px;
+      margin: 0 0 7px;
+      font-size: 28px;
+      line-height: 1.08;
       font-weight: 400;
+      font-family: "Times New Roman", Times, serif;
+      color: #f8efe2;
     }
 
     .cta p {
       margin: 0;
-      color: var(--ink);
-      font-size: 14px;
+      color: #fff3e3;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 13px;
+      font-weight: 400;
+      line-height: 1.18;
+      white-space: nowrap;
+    }
+
+    .cta .btn.primary {
+      min-width: 300px;
+      min-height: 46px;
+      padding-inline: 24px 18px;
+      justify-self: start;
+      background:
+        radial-gradient(circle at 50% 0%, rgba(255, 231, 151, .18), transparent 42%) padding-box,
+        linear-gradient(90deg, rgba(255, 224, 133, .1), transparent 14%, transparent 84%, rgba(255, 224, 133, .1)) padding-box,
+        linear-gradient(180deg, #7730a6 0%, #5b1f8f 50%, #461779 100%) padding-box;
     }
 
     footer {
       display: grid;
       grid-template-columns: 2.2fr .9fr 1.05fr 1.2fr 1.55fr;
       column-gap: 24px;
-      row-gap: 8px;
-      padding: 0 16px 14px;
+      row-gap: 4px;
+      padding: 0 16px 5px;
       color: var(--muted);
     }
 
@@ -726,7 +960,7 @@
     footer p,
     footer a {
       display: block;
-      margin: 0 0 5px;
+      margin: 0 0 3px;
       color: var(--muted);
       font-size: 12px;
     }
@@ -749,8 +983,34 @@
       display: flex;
       justify-content: space-between;
       border-top: 1px solid rgba(216, 169, 77, .18);
-      padding-top: 10px;
+      padding-top: 4px;
       font-size: 12px;
+    }
+
+    footer .mark {
+      width: 56px;
+      height: 56px;
+    }
+
+    footer .mark .icon-img {
+      width: 58px;
+      height: 58px;
+    }
+
+    footer .brand-title {
+      font-size: 25px;
+      line-height: .88;
+      transform: translateY(3px);
+    }
+
+    footer .brand-title span {
+      margin-top: 6px;
+      font-size: 10px;
+      letter-spacing: .31em;
+    }
+
+    footer > div:first-child > p {
+      margin-top: 4px;
     }
 
     @media (max-width: 900px) {
@@ -809,6 +1069,71 @@
 </head>
 <body>
   <div class="page">
+    <svg class="svg-defs" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+      <symbol id="frame-button" viewBox="0 0 320 48">
+        <g fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" shape-rendering="geometricPrecision">
+          <path vector-effect="non-scaling-stroke" d="M7.5 1.5H312.5L318.5 7.5V40.5L312.5 46.5H7.5L1.5 40.5V7.5L7.5 1.5Z"/>
+          <path vector-effect="non-scaling-stroke" opacity=".48" d="M14.5 5.5H76.5M243.5 5.5H305.5M14.5 42.5H76.5M243.5 42.5H305.5"/>
+          <path vector-effect="non-scaling-stroke" opacity=".34" d="M7.5 11.5V19.5M312.5 11.5V19.5M7.5 28.5V36.5M312.5 28.5V36.5"/>
+        </g>
+        <g fill="currentColor" opacity=".76">
+          <circle cx="7.5" cy="24" r=".9"/>
+          <circle cx="312.5" cy="24" r=".9"/>
+        </g>
+      </symbol>
+
+      <symbol id="frame-card" viewBox="0 0 240 162">
+        <g fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" shape-rendering="geometricPrecision">
+          <path vector-effect="non-scaling-stroke" d="M10.5 1.5H229.5C229.5 6.2 233.8 8.3 238.5 9.5V152.5C233.8 153.7 229.5 155.8 229.5 160.5H10.5C10.5 155.8 6.2 153.7 1.5 152.5V9.5C6.2 8.3 10.5 6.2 10.5 1.5Z"/>
+          <path vector-effect="non-scaling-stroke" opacity=".18" d="M17.5 7.5H64.5M175.5 7.5H222.5M17.5 154.5H64.5M175.5 154.5H222.5"/>
+          <path vector-effect="non-scaling-stroke" opacity=".14" d="M7.5 17.5V48.5M232.5 17.5V48.5M7.5 113.5V144.5M232.5 113.5V144.5"/>
+          <path vector-effect="non-scaling-stroke" opacity=".12" d="M14.5 13.5H31.5M208.5 13.5H225.5M14.5 148.5H31.5M208.5 148.5H225.5"/>
+        </g>
+        <g fill="currentColor" opacity=".5">
+          <circle cx="5.5" cy="81" r=".85"/>
+          <circle cx="234.5" cy="81" r=".85"/>
+          <circle cx="10.5" cy="10.5" r=".65"/>
+          <circle cx="229.5" cy="10.5" r=".65"/>
+          <circle cx="10.5" cy="151.5" r=".65"/>
+          <circle cx="229.5" cy="151.5" r=".65"/>
+        </g>
+      </symbol>
+
+      <symbol id="frame-feature" viewBox="0 0 500 235">
+        <g fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" shape-rendering="geometricPrecision">
+          <path vector-effect="non-scaling-stroke" d="M8.5 1.5H491.5C491.5 5.9 494.8 8.2 498.5 9.5V225.5C494.8 226.8 491.5 229.1 491.5 233.5H8.5C8.5 229.1 5.2 226.8 1.5 225.5V9.5C5.2 8.2 8.5 5.9 8.5 1.5Z"/>
+          <path vector-effect="non-scaling-stroke" opacity=".18" d="M16.5 7.5H92.5M407.5 7.5H483.5M16.5 227.5H92.5M407.5 227.5H483.5"/>
+          <path vector-effect="non-scaling-stroke" opacity=".13" d="M7.5 18.5V72.5M492.5 18.5V72.5M7.5 162.5V216.5M492.5 162.5V216.5"/>
+          <path vector-effect="non-scaling-stroke" opacity=".1" d="M14.5 13.5H41.5M458.5 13.5H485.5M14.5 221.5H41.5M458.5 221.5H485.5"/>
+        </g>
+        <g fill="currentColor" opacity=".44">
+          <circle cx="5.5" cy="117.5" r=".85"/>
+          <circle cx="494.5" cy="117.5" r=".85"/>
+          <circle cx="8.5" cy="9.5" r=".65"/>
+          <circle cx="491.5" cy="9.5" r=".65"/>
+          <circle cx="8.5" cy="225.5" r=".65"/>
+          <circle cx="491.5" cy="225.5" r=".65"/>
+        </g>
+      </symbol>
+
+      <symbol id="frame-panel" viewBox="0 0 1028 112">
+        <g fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" shape-rendering="geometricPrecision">
+          <path vector-effect="non-scaling-stroke" d="M7.5 1.5H1020.5C1020.5 6 1023.9 8.3 1026.5 9.5V102.5C1023.9 103.7 1020.5 106 1020.5 110.5H7.5C7.5 106 4.1 103.7 1.5 102.5V9.5C4.1 8.3 7.5 6 7.5 1.5Z"/>
+          <path vector-effect="non-scaling-stroke" opacity=".22" d="M16.5 7.5H118.5M909.5 7.5H1011.5M16.5 104.5H118.5M909.5 104.5H1011.5"/>
+          <path vector-effect="non-scaling-stroke" opacity=".18" d="M7.5 18.5V44.5M1020.5 18.5V44.5M7.5 67.5V93.5M1020.5 67.5V93.5"/>
+          <path vector-effect="non-scaling-stroke" opacity=".14" d="M1.5 9.5C-.7 13.1-.7 17.1 1.5 20.5M1.5 91.5C-.7 94.9-.7 98.9 1.5 102.5M1026.5 9.5C1028.7 13.1 1028.7 17.1 1026.5 20.5M1026.5 91.5C1028.7 94.9 1028.7 98.9 1026.5 102.5"/>
+        </g>
+        <g fill="currentColor" opacity=".5">
+          <circle cx="3.5" cy="56" r=".85"/>
+          <circle cx="1024.5" cy="56" r=".85"/>
+          <circle cx="8.5" cy="9.5" r=".65"/>
+          <circle cx="1019.5" cy="9.5" r=".65"/>
+          <circle cx="8.5" cy="102.5" r=".65"/>
+          <circle cx="1019.5" cy="102.5" r=".65"/>
+        </g>
+      </symbol>
+    </svg>
+
     <header class="hero">
       <nav class="nav" aria-label="Primary navigation">
         <a class="brand" href="#">
@@ -822,21 +1147,29 @@
           <a href="#portfolio">Portfolio</a>
           <a href="#contact">Contact</a>
         </div>
-        <a class="btn" href="#consultation">Book a Consultation</a>
+        <a class="btn" href="#consultation"><svg class="ornate-frame button-frame" viewBox="0 0 320 48" preserveAspectRatio="none" aria-hidden="true"><use href="#frame-button"></use></svg><span>Book a Consultation</span></a>
       </nav>
 
       <section class="hero-copy">
         <h1>We Build <br><em>Legendary Castles</em><br>for Modern Kingdoms</h1>
         <p>From lakeside strongholds to celestial throne halls, TriMoon Citadel Works designs, engineers, and delivers bespoke magical castles across the realm.</p>
         <div class="hero-actions">
-          <a class="btn primary" href="#consultation">Book a Design Consultation</a>
-          <a class="btn dark" href="#portfolio">View Signature Castles</a>
+          <a class="btn primary" href="#consultation"><svg class="ornate-frame button-frame" viewBox="0 0 320 48" preserveAspectRatio="none" aria-hidden="true"><use href="#frame-button"></use></svg><span>Book a Design Consultation</span></a>
+          <a class="btn dark" href="#portfolio"><svg class="ornate-frame button-frame" viewBox="0 0 320 48" preserveAspectRatio="none" aria-hidden="true"><use href="#frame-button"></use></svg><span>View Signature Castles</span></a>
         </div>
       </section>
     </header>
 
     <main>
       <section class="stats" aria-label="Company statistics">
+        <svg class="stats-frame" viewBox="0 0 768 63" preserveAspectRatio="none" aria-hidden="true">
+          <path class="line" d="M8.5 1.5H759.5C759.6 4.7 762 7 766.5 8.5V54.5C762 56 759.6 58.3 759.5 61.5H8.5C8.4 58.3 6 56 1.5 54.5V8.5C6 7 8.4 4.7 8.5 1.5Z"/>
+          <path class="line" d="M1.5 8.5C-.6 11.2-.6 14.8 1.5 17.5M1.5 45.5C-.6 48.2-.6 51.8 1.5 54.5"/>
+          <path class="line" d="M766.5 8.5C768.6 11.2 768.6 14.8 766.5 17.5M766.5 45.5C768.6 48.2 768.6 51.8 766.5 54.5"/>
+          <path class="line" d="M8.5 1.5C6.3 1.6 5.5 0 6.9-1.1M8.5 61.5C6.3 61.4 5.5 63 6.9 64.1M759.5 1.5C761.7 1.6 762.5 0 761.1-1.1M759.5 61.5C761.7 61.4 762.5 63 761.1 64.1"/>
+          <path class="dot" d="M1.5 29.1l2.4 2.4-2.4 2.4-2.4-2.4Z"/>
+          <path class="dot" d="M766.5 29.1l2.4 2.4-2.4 2.4-2.4-2.4Z"/>
+        </svg>
         <div class="stat">
           <img class="icon-img" src="assets/cropped-icons-webp/icon-stat-castle.webp" alt="" aria-hidden="true">
           <div><span class="num">47</span><span class="label">Castles Completed</span></div>
@@ -853,24 +1186,28 @@
 
       <section class="service-grid" id="castles">
         <article class="service">
+          <svg class="ornate-frame card-frame" viewBox="0 0 240 162" preserveAspectRatio="none" aria-hidden="true"><use href="#frame-card"></use></svg>
           <div class="icon"><img class="icon-img" src="assets/cropped-icons-webp/icon-arcane-arch.webp" alt="" aria-hidden="true"></div>
           <h3>Arcane Architecture</h3>
           <p>Where ancient magic meets structural mastery. Our designs are timeless, awe-inspiring, and built to endure.</p>
           <span class="mini">*</span>
         </article>
         <article class="service">
+          <svg class="ornate-frame card-frame" viewBox="0 0 240 162" preserveAspectRatio="none" aria-hidden="true"><use href="#frame-card"></use></svg>
           <div class="icon"><img class="icon-img" src="assets/cropped-icons-webp/icon-ward-shield.webp" alt="" aria-hidden="true"></div>
           <h3>Defensive Wards</h3>
           <p>Integrated protective enchantments and smart defense systems keep your realm secure across every plane of existence.</p>
           <span class="mini">*</span>
         </article>
         <article class="service">
+          <svg class="ornate-frame card-frame" viewBox="0 0 240 162" preserveAspectRatio="none" aria-hidden="true"><use href="#frame-card"></use></svg>
           <div class="icon"><img class="icon-img" src="assets/cropped-icons-webp/icon-royal-interiors.webp" alt="" aria-hidden="true"></div>
           <h3>Royal Interiors</h3>
           <p>Bespoke halls and chambers crafted with rare materials, enchantments, and unrivaled artisan craftsmanship.</p>
           <span class="mini">*</span>
         </article>
         <article class="service">
+          <svg class="ornate-frame card-frame" viewBox="0 0 240 162" preserveAspectRatio="none" aria-hidden="true"><use href="#frame-card"></use></svg>
           <div class="icon"><img class="icon-img" src="assets/cropped-icons-webp/icon-valley-lake.webp" alt="" aria-hidden="true"></div>
           <h3>Valley &amp; Lake Masterplans</h3>
           <p>Elevated site design that honors the land, the waters, and the views, crafted for legacy and generations to come.</p>
@@ -884,6 +1221,7 @@
             <source srcset="tower-perspective.webp" type="image/webp">
             <img src="tower-perspective.png" width="1672" height="941" loading="eager" decoding="async" alt="Castle towers overlooking a mountain lake at sunset">
           </picture>
+          <svg class="ornate-frame feature-frame" viewBox="0 0 500 235" preserveAspectRatio="none" aria-hidden="true"><use href="#frame-feature"></use></svg>
           <div class="feature-copy">
             <h3>Master Planning &amp; Views</h3>
             <p>Strategic site design that frames breathtaking vistas and harmonizes architecture with nature.</p>
@@ -895,6 +1233,7 @@
             <source srcset="throne-room.webp" type="image/webp">
             <img src="throne-room.png" width="1672" height="941" loading="eager" decoding="async" alt="Grand magical throne room with stained glass and gold details">
           </picture>
+          <svg class="ornate-frame feature-frame" viewBox="0 0 500 235" preserveAspectRatio="none" aria-hidden="true"><use href="#frame-feature"></use></svg>
           <div class="feature-copy">
             <h3>Interiors &amp; Craftsmanship</h3>
             <p>Throne rooms, great halls, and private chambers crafted with rare materials and timeless precision.</p>
@@ -904,11 +1243,12 @@
       </section>
 
       <section class="process" id="process">
+        <svg class="ornate-frame panel-frame" viewBox="0 0 1028 112" preserveAspectRatio="none" aria-hidden="true"><use href="#frame-panel"></use></svg>
         <div class="section-title">Our Process</div>
         <div class="steps">
           <article class="step">
             <div class="round"><img class="icon-img" src="assets/cropped-icons-webp/icon-compass-discover.webp" alt="" aria-hidden="true"></div>
-            <div><h3><span>1</span>Discover</h3><p>We learn your vision, realm, and requirements through in-depth consultation.</p></div>
+            <div><h3><span>1</span>Discover</h3><p>We learn your vision, realm, and requirements through <span class="no-break">in-depth</span> consultation.</p></div>
           </article>
           <article class="step">
             <div class="round"><img class="icon-img" src="assets/cropped-icons-webp/icon-process-castle.webp" alt="" aria-hidden="true"></div>
@@ -926,29 +1266,31 @@
       </section>
 
       <section class="testimonial">
+        <svg class="ornate-frame panel-frame" viewBox="0 0 1028 112" preserveAspectRatio="none" aria-hidden="true"><use href="#frame-panel"></use></svg>
         <img class="shield" src="assets/cropped-icons-webp/icon-testimonial-shield.webp" alt="" aria-hidden="true">
         <blockquote>
-          "TriMoon Citadel Works did more than build a castle--they created the heart of our kingdom."
+          “TriMoon Citadel Works did more than build a castle—<br><span class="quote-continuation">they created the heart of our kingdom.”</span>
           <p>Their vision, craftsmanship, and mastery of magic are unmatched.</p>
         </blockquote>
-        <div class="cite"><cite>- Queen Alariana Valewind</cite><span>House Valewind, Kingdom of Lumeria</span></div>
-        <div class="dots">o o o</div>
+        <div class="cite"><cite>– Queen Alariana Valewind</cite><span>House Valewind, Kingdom of Lumeria</span></div>
+        <div class="dots" aria-hidden="true"><span></span><span></span><span></span></div>
       </section>
 
       <section class="cta" id="consultation">
+        <svg class="ornate-frame panel-frame" viewBox="0 0 1028 112" preserveAspectRatio="none" aria-hidden="true"><use href="#frame-panel"></use></svg>
         <div class="icon"><img class="icon-img" src="assets/cropped-icons-webp/icon-cta-castle.webp" alt="" aria-hidden="true"></div>
         <div>
           <h2>Begin Your Legacy Today</h2>
           <p>Every great kingdom begins with a vision. Let us build it into something eternal.</p>
         </div>
-        <a class="btn primary" href="#">Book a Design Consultation</a>
+        <a class="btn primary" href="#"><svg class="ornate-frame button-frame" viewBox="0 0 320 48" preserveAspectRatio="none" aria-hidden="true"><use href="#frame-button"></use></svg><span>Book a Design Consultation</span></a>
       </section>
     </main>
 
     <footer id="contact">
       <div>
         <div class="footer-brand">
-          <span class="mark" aria-hidden="true"><img class="icon-img" src="assets/cropped-icons-webp/icon-brand.webp" alt=""></span>
+          <span class="mark" aria-hidden="true"><img class="icon-img" src="assets/reference-icons/icon-brand.png" alt=""></span>
           <span class="brand-title">TriMoon<span>Citadel Works</span></span>
         </div>
         <p>Engineering Legends. Etching Legacies.</p>

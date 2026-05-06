@@ -1,0 +1,24 @@
+{
+  "name": "trimooncitadel",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dustycyanide/trimooncitadel.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/dustycyanide/trimooncitadel/issues"
+  },
+  "homepage": "https://github.com/dustycyanide/trimooncitadel#readme",
+  "devDependencies": {
+    "@playwright/test": "^1.59.1"
+  }
+}
