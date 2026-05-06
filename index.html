@@ -1047,16 +1047,20 @@
 
       .hero {
         min-height: 560px;
+        background-position: 58% center;
       }
 
       .stats,
-      .service-grid,
-      .feature-grid,
       .steps,
       .testimonial,
       .cta,
       footer {
         grid-template-columns: 1fr;
+      }
+
+      .service-grid,
+      .feature-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
       }
 
       .stats {
@@ -1072,8 +1076,36 @@
         margin-inline: 0;
       }
 
+      .step,
+      .step:nth-child(2),
+      .step:nth-child(3),
+      .step:nth-child(4),
+      .round,
+      .step:nth-child(2) .round,
+      .step:nth-child(3) .round,
+      .step:nth-child(4) .round,
+      .shield,
+      blockquote,
+      .quote-continuation,
+      .cta .icon,
+      .cta > div:nth-of-type(2) {
+        transform: none;
+      }
+
       .step::after {
         display: none;
+      }
+
+      .process {
+        padding: 14px 18px 22px;
+      }
+
+      .steps {
+        gap: 18px;
+      }
+
+      .step {
+        grid-template-columns: 82px minmax(0, 1fr);
       }
 
       .testimonial,
@@ -1081,8 +1113,144 @@
         text-align: center;
       }
 
+      .testimonial {
+        gap: 12px;
+        padding: 18px 22px 26px;
+      }
+
+      .shield {
+        justify-self: center;
+      }
+
+      .cta {
+        gap: 8px;
+        padding: 18px 24px 20px;
+      }
+
+      .cta h2 {
+        font-size: clamp(25px, 5vw, 28px);
+      }
+
+      .cta p {
+        white-space: normal;
+      }
+
+      .cta .btn.primary {
+        min-width: 0;
+        justify-self: stretch;
+      }
+
       .cta .btn {
         width: 100%;
+      }
+
+      footer {
+        padding-inline: 0;
+      }
+
+      .contact-line {
+        align-items: flex-start;
+        overflow-wrap: anywhere;
+      }
+
+      .copyright {
+        flex-direction: column;
+        gap: 4px;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .nav,
+      .hero-copy,
+      main,
+      footer {
+        width: min(100% - 30px, 430px);
+      }
+
+      .nav {
+        height: 82px;
+      }
+
+      .nav > .btn {
+        display: none;
+      }
+
+      .brand {
+        min-width: 0;
+      }
+
+      .brand-title {
+        font-size: clamp(24px, 8vw, 31px);
+      }
+
+      .brand-title span {
+        font-size: 11px;
+        letter-spacing: .27em;
+      }
+
+      .hero {
+        min-height: 555px;
+      }
+
+      .hero-copy {
+        padding-top: 24px;
+        padding-left: 0;
+      }
+
+      h1 {
+        font-size: clamp(40px, 12vw, 47px);
+      }
+
+      .hero-copy p {
+        font-size: 16px;
+      }
+
+      .hero-actions,
+      .hero-actions .btn,
+      .btn.primary,
+      .btn.dark {
+        width: 100%;
+        min-width: 0;
+      }
+
+      .stats,
+      .service-grid,
+      .feature-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .stat {
+        justify-content: center;
+        gap: 18px;
+        padding: 8px 18px;
+      }
+
+      .feature {
+        min-height: 236px;
+      }
+
+      .section-title {
+        gap: 10px;
+        padding-inline: 0;
+        font-size: 25px;
+      }
+
+      .section-title::before,
+      .section-title::after {
+        width: min(88px, 22vw);
+      }
+
+      .step {
+        grid-template-columns: 82px minmax(0, 1fr);
+      }
+
+      .cta .btn.primary {
+        padding-inline: 16px;
+      }
+
+      .footer-brand,
+      footer .brand {
+        min-width: 0;
       }
     }
   </style>
